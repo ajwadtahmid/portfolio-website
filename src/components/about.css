@@ -1,0 +1,46 @@
+#about {
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    max-width: 100rem;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.aboutContent {
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.hello {
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+
+.introName {
+    color: cyan;
+}
+
+.aboutParagraph {
+    font-size: medium;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 720px){
+    .hello {
+        font-size: 4.5vw;
+    }
+
+    .aboutContent {
+        font-size: 10vw;
+    }
+}
