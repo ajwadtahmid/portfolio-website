@@ -1,0 +1,41 @@
+#experience {
+    overflow: hidden;
+    width: 100vw;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.expSectionTitle {
+    font-size: 3rem;
+    font-weight: 600;
+    padding: 2rem;
+}
+
+.expSection {
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    background-color: rgb(50,50,50);
+    margin: 2rem;
+}
+
+.expHeading {
+    margin-bottom: 1rem;
+}
+
+.expExtra {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.expDescList {
+    text-align: left;
+    margin-left: 1rem;
+}

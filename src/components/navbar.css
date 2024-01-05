@@ -24,9 +24,9 @@
 }
 
 .desktopMenuListItems:hover {
-    color: cyan;
+    color: rgb(100, 181, 246);
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid cyan;
+    border-bottom: 3px solid rgb(100, 181, 246);
 }
 
 .resumeButton {
@@ -46,7 +46,7 @@
 
 .resumeButton:hover {
     cursor: pointer;
-    background: cyan;
+    background: rgb(100, 181, 246);
 }
 
 .resumeButtonImg {
@@ -59,7 +59,7 @@
 .active {
     color: cyan;
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid cyan;
+    border-bottom: 3px solid rgb(100, 181, 246);
 }
 
 .mobileMenu {

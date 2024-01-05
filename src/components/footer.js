@@ -4,7 +4,7 @@ import './footer.css';
 const Footer = () => {
   return (
     <footer className='footer'>
-        &copy; 2023 Ajwad Tahmid Ayon. All Rights Reserved.
+        &copy; 2023 - Present, Ajwad Tahmid Ayon. All Rights Reserved.
     </footer>
   );
 }

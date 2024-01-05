@@ -53,7 +53,7 @@
 
 .submitButton:hover {
     cursor: pointer;
-    background: cyan;
+    background: rgb(100, 181, 246);
 }
 
 .links {
