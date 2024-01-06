@@ -10,7 +10,7 @@ const Contact = () => {
     const sendEmail = (e) => {
         e.preventDefault();
         
-        emailjs.sendForm('service_fzivk7e', 'template_kkzwpbp', form.current, 'J8GkK4AS_sBls7ANj')
+        emailjs.sendForm('service_4bj7t2y', 'template_kkzwpbp', form.current, 'J8GkK4AS_sBls7ANj')
           .then((result) => {
               console.log(result.text);
               e.target.reset();
@@ -27,7 +27,7 @@ const Contact = () => {
             <form className="contactForm" ref={form} onSubmit={sendEmail}>
                 <input className="name" type="text" placeholder="Your Name" name="your_name" />
                 <input className="email" type="email" placeholder="Your Email" name="your_email" />
-                <textarea className="messageBody" placeholder="Your Message" rows="5" name="message"/>
+                <textarea className="messageBody" placeholder="Your Message" rows="5" name="message"></textarea>
                 <button className="submitButton" value="Send" type="submit">Submit</button>
                 <div className="links">
                     <a href="mailto:ayonat@uci.edu">
