@@ -33,6 +33,10 @@
     font-size: medium;
     font-weight: 300;
     letter-spacing: 1px;
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 5rem;
 }
 
 @media screen and (max-width: 720px){
