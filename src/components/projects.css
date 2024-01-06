@@ -1,4 +1,42 @@
-.expSectionTitle {
+#projects {
+    padding-top: 7.5rem;
+    overflow: hidden;
+    width: 100vw;
+    max-width: 80rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.projectSectionTitle {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
+
+.projectBars > h1{
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.projectBars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem;
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(100, 181, 246);
+  }
