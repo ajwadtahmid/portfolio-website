@@ -39,11 +39,17 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+    font-weight: 200;
+}
+
+.expDesc {
+    font-weight: 200;
 }
 
 .expDescList {
     text-align: left;
     margin-left: 1rem;
+    font-weight: 200;
 }
 
 @media screen and (max-width:720px) {
