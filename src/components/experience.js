@@ -8,13 +8,13 @@ const Experience = () => {
         <div className="experienceSection">
             <div className="expSection">
                 <h1 className="expHeading">Computer Science Major @ University of California, Irvine</h1>
-                <p className="expExtra">Degree Type: Bachelor's in Computer Science <span className="duration">Expected Graduation: Spring 2025</span></p> 
+                <p className="expExtra">Degree: Bachelor's in Computer Science <span className="duration">Expected Graduation: Spring 2025</span></p> 
                 <p className="expDesc">Relevant Coursework: Data Structure Implementation and Analysis, Information Retrieval, 
                   Human Computer Interaction, Introduction to Data Management, Intro to Software Engineering</p>
             </div>
             <div className="expSection">
                 <h1 className="expHeading">Regulatory Affairs Assistant @ NHK Laboratories Inc.</h1>
-                <p className="expExtra">Santa Fe Springs, CA <span className="duration">February 2020 - September 2023</span></p> 
+                <p className="expExtra">Santa Fe Springs, CA <span className="duration">Feb. 2020 - Sep.2023</span></p> 
                 <ul className="expDescList">
                   <li>Managed customer complaints and led investigations for over 100 cases to ensure customer satisfaction.</li>
                   <li>Collaboratively facilitated and supported over 30 external regulatory audits, working closely with relevant 
@@ -27,7 +27,7 @@ const Experience = () => {
             </div>
             <div className="expSection">
                 <h1 className="expHeading">Volunteer @ South Asian Network</h1>
-                <p className="expExtra">Artesia, CA <span className="duration">May 2022 - August 2022</span></p>
+                <p className="expExtra">Artesia, CA <span className="duration">May 2022 - Aug. 2022</span></p>
                 <ul className="expDescList">
                   <li>Assisted over 75 immigrants in US citizenship applications, through form completion and informational support.</li>
                   <li>Shared welfare opportunities and mental health support with communities through posters and handouts.</li>

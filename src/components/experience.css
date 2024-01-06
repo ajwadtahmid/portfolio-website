@@ -1,7 +1,7 @@
 #experience {
     overflow: hidden;
     width: 100vw;
-    max-width: 60%;
+    max-width: 80rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,16 +13,22 @@
 .expSectionTitle {
     font-size: 3rem;
     font-weight: 600;
-    padding: 2rem;
+}
+
+.experienceSection {
+    margin: 1.5rem;
+    width: 100vw;
+    max-width: 80%;
+    text-align: left;
 }
 
 .expSection {
-    font-weight: 400;
-    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
     padding: 1.5rem 2rem;
     border-radius: 0.5rem;
-    background-color: rgb(50,50,50);
-    margin: 2rem;
+    background: rgb(50, 50, 50);
 }
 
 .expHeading {
@@ -38,4 +44,37 @@
 .expDescList {
     text-align: left;
     margin-left: 1rem;
+}
+
+@media screen and (max-width:720px) {
+    .expSection{
+        font-size: 2vw;
+    }
+    .expSectionTitle {
+        font-size: 2.5rem;
+    }
+    .expExtra{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .expSection {
+        font-size: 3vw;
+    }
+    .expSection > h1{
+        font-size: 5vw;
+    }
+    .expExtra{
+        flex-direction: column;
+        justify-content: left;
+    }
+    .expSectionTitle {
+        font-size: 2rem;
+    }
+    .expDescList {
+        margin-left: 0.5rem;
+    }
 }
