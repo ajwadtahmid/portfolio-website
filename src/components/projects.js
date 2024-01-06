@@ -22,7 +22,7 @@ const Projects = () => {
                 <h2>Tip Calculator (Android)</h2>
               </div>
               <div className="projectBarDesc">
-                <p> Created a tip calcuator in kotlin that updates result in real time.</p>
+                <p>Used Kotlin to create a tip calculator app for android that seemlessly shows the result in real time</p>
               </div>
             </a>
           </div>
