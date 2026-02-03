@@ -1,86 +1,197 @@
 #experience {
-    overflow: hidden;
+    padding: 6rem 0;
     width: 100vw;
-    max-width: 80rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    max-width: 100rem;
     margin: 0 auto;
+}
+
+.expContainer {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.expHeader {
+    margin-bottom: 4rem;
 }
 
 .expSectionTitle {
     font-size: 3rem;
-    font-weight: 600;
-}
-
-.experienceSection {
-    margin: 1.5rem;
-    width: 100vw;
-    max-width: 80%;
-    text-align: left;
-}
-
-.expSection {
-    display: flex;
-    flex-direction: column;
-    margin: 1.5rem;
-    padding: 1.5rem 2rem;
-    border-radius: 0.5rem;
-    background: rgb(50, 50, 50);
-}
-
-.expHeading {
+    font-weight: 700;
+    color: var(--text-color);
     margin-bottom: 1rem;
 }
 
-.expExtra {
+.expSubtitle {
+    font-size: 1.125rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    max-width: 42rem;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -6px;
+    top: 1.5rem;
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-color), 0 0 0 6px var(--primary-color);
+}
+
+.expCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.expCard:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+}
+
+.expCardHeader {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.expIcon {
+    font-size: 1.25rem;
+    padding: 0.6rem;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+}
+
+.expPeriod {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.expTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
-    font-weight: 300;
+    transition: color 0.3s ease;
 }
 
-.expDesc {
-    font-weight: 300;
+.expCard:hover .expTitle {
+    color: var(--primary-color);
 }
 
-.expDescList {
-    text-align: left;
-    margin-left: 1rem;
-    font-weight: 300;
+.expCompany {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
 }
 
-@media screen and (max-width:720px) {
-    .expSection{
-        font-size: 2vw;
+.expLocation {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-bottom: 1rem;
+}
+
+.expDescription {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.expTechnologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.techTag {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.techTag:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+@media screen and (min-width: 768px) {
+    .timeline-line {
+        left: 50%;
+        transform: translateX(-50%);
     }
+
+    .timeline-left {
+        padding-left: 0;
+        padding-right: calc(50% + 2rem);
+    }
+
+    .timeline-right {
+        padding-left: calc(50% + 2rem);
+        padding-right: 0;
+    }
+
+    .timeline-left .timeline-dot {
+        left: calc(50% - 7px);
+    }
+
+    .timeline-right .timeline-dot {
+        left: calc(50% - 7px);
+    }
+}
+
+@media screen and (max-width: 767px) {
     .expSectionTitle {
         font-size: 2.5rem;
     }
-    .expExtra{
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-    }
-}
 
-@media screen and (max-width:480px) {
-    .expSection {
-        font-size: 3vw;
-    }
-    .expSection > h1{
-        font-size: 5vw;
-    }
-    .expExtra{
-        flex-direction: column;
-        justify-content: left;
-    }
-    .expSectionTitle {
-        font-size: 2rem;
-    }
-    .expDescList {
-        margin-left: 0.5rem;
+    .timeline-item {
+        padding-left: 2rem;
     }
 }

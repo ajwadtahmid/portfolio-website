@@ -5,19 +5,27 @@
     margin: 0 auto;
     text-align: center;
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 6rem 2rem;
 }
 
 .contactPageTitle {
     font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
 }
 
 .contactDesc {
+    display: block;
     padding: 1rem;
-    font-size: medium;
+    font-size: 1.125rem;
     font-weight: 300;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-bottom: 2rem;
 }
 
 .contactForm {
@@ -27,57 +35,125 @@
     align-items: center;
     justify-content: center;
     width: 90vw;
-    max-width: 60rem;
+    max-width: 40rem;
 }
 
-.name, .email, .messageBody {
-    font-size: medium;
+.name,
+.email,
+.messageBody {
+    font-size: 1rem;
     width: 100%;
     max-width: 40rem;
     margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    color: white;
-    border: none;
+    padding: 0.875rem 1rem;
+    color: var(--text-color);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 0.5rem;
-    background: rgb(50,50,50);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.name:focus,
+.email:focus,
+.messageBody:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+}
+
+.messageBody {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .submitButton {
-    background: white;
+    background: var(--primary-color);
+    color: var(--bg-color);
     border: none;
-    padding: 0.75rem 3.5rem;
+    padding: 0.875rem 3.5rem;
     border-radius: 0.5rem;
-    margin: 2rem;
+    margin: 2rem 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .submitButton:hover {
-    cursor: pointer;
-    background: rgb(100, 181, 246);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+.submitButton:active {
+    transform: translateY(0);
 }
 
 .links {
     display: flex;
     flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.linkItem {
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .linkIcon {
-    object-fit: cover;
+    width: 3rem;
     height: 3rem;
-    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.linkItem:hover .linkIcon {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+.linkIcon svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 @media screen and (max-width: 720px) {
     .contactPageTitle {
-      font-size: 2rem;
+        font-size: 2.5rem;
     }
-  
+
     .contactDesc {
-      font-size: 0.875rem;
+        font-size: 1rem;
     }
-  
+
     .name,
     .email,
-    .message {
-      font-size: 0.875rem;
+    .messageBody {
+        font-size: 0.875rem;
     }
-  }
+
+    .submitButton {
+        padding: 0.75rem 2.5rem;
+    }
+
+    .linkIcon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .linkIcon svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}

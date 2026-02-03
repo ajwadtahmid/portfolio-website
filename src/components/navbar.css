@@ -8,58 +8,76 @@
     justify-content: space-between;
     position: sticky;
     top: 0;
-    z-index: 3;
-    background-color: rgb(40,40,40);
+    z-index: 100;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    object-fit: cover;
-    height: 3rem;
-    width: 3rem;
+    background: none;
+    border: none;
+    padding: 20px;
+    font: inherit;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.logo:hover {
+    opacity: 0.75;
+    transform: translateY(-1px);
+}
+
+
+.desktopMenu {
+    display: flex;
+    align-items: center;
 }
 
 .desktopMenuListItems {
     margin: 1rem;
     cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-family: inherit;
+    text-decoration: none;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid transparent;
 }
 
 .desktopMenuListItems:hover {
-    color: rgb(100, 181, 246);
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid rgb(100, 181, 246);
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
 }
 
-.resumeButton {
-    object-fit: cover;
-    height: 3rem;
-    width: 8rem;
-    margin: 1rem;
+.desktopMenuListItems.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.themeToggle {
+    background: var(--toggle-bg);
     border: none;
-    color: black;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    border-radius: 2rem;
-}
-
-.resumeButton:hover {
+    color: var(--toggle-color);
+    font-size: 1.2rem;
+    padding: 0.6rem 1rem;
     cursor: pointer;
-    background: rgb(100, 181, 246);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--toggle-shadow);
 }
 
-.resumeButtonImg {
-    object-fit: cover;
-    height: 1rem;
-    width: 1rem;
-    margin: 1rem;
-}
-
-.active {
-    color: rgb(100, 181, 246);
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid rgb(100, 181, 246);
+.themeToggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 4px 12px var(--toggle-shadow-hover);
 }
 
 .mobileMenu {
@@ -72,16 +90,34 @@
     padding: 0.5rem;
     height: fit-content;
     min-width: 15rem;
-    background-color: rgb(30,30,30);
+    background-color: var(--card-bg);
     border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.mobileMenuListItems{
-    color: white;
+.mobileMenuListItems {
+    color: var(--text-color);
     padding: 0.5rem 3rem;
     margin: 0.25rem;
-    border-radius: 0.25rem;
-    background: rgb(25, 25, 25);
+    border-radius: 0.5rem;
+    background: var(--bg-color);
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.mobileMenuListItems:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.mobileMenuListItems.active {
+    background: var(--primary-color);
+    color: var(--bg-color);
 }
 
 .mobMenu {
@@ -90,11 +126,12 @@
     height: 3rem;
 }
 
-@media screen and (max-width:720px){
-    .mobMenu{
+@media screen and (max-width:720px) {
+    .mobMenu {
         display: flex;
     }
-    .desktopMenu{
+
+    .desktopMenu {
         display: none;
     }
 }
