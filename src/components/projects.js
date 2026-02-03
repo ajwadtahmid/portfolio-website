@@ -46,7 +46,6 @@ const projects = [
     live: null
   }
 
-
 ];
 
 const Projects = () => {

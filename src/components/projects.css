@@ -33,7 +33,6 @@
 .projectGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* 2 projects per row */
     gap: 1.5rem;
 }
 
@@ -144,7 +143,6 @@
     transform: scale(1.05);
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .projectSectionTitle {
         font-size: 2.5rem;

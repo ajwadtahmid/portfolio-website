@@ -23,7 +23,6 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         <a href="https://drive.google.com/file/d/1KMFSPUUP1jbwa9RSZxjZNKlxFUOfN_5X/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="desktopMenuListItems">Resume</a>
       </div>
 
-      {/* Theme toggle button only */}
       <button className="themeToggle" onClick={toggleTheme}>
         {darkMode ? '☀️' : '🌙'}
       </button>
