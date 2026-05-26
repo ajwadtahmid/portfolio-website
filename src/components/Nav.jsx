@@ -3,11 +3,11 @@ import { useAmbientSound } from "../hooks";
 import { SunIcon, MoonIcon, SpeakerOnIcon, SpeakerOffIcon } from "../icons";
 
 const NAV_LINKS = [
-  { label: "About",    href: "#about",    id: "about" },
-  { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Skills",   href: "#skills",   id: "skills" },
-  { label: "Contact",  href: "#contact",  id: "contact" },
-  { label: "Resume",   href: "https://drive.google.com/file/d/1KMFSPUUP1jbwa9RSZxjZNKlxFUOfN_5X/view?usp=drive_link", id: null },
+  { label: "About",      href: "#about",      id: "about" },
+  { label: "Experience", href: "#experience", id: "experience" },
+  { label: "Projects",   href: "#projects",   id: "projects" },
+  { label: "Skills",     href: "#skills",     id: "skills" },
+  { label: "Contact",    href: "#contact",    id: "contact" },
 ];
 
 export default function Nav({ dark, setDark }) {
@@ -23,7 +23,7 @@ export default function Nav({ dark, setDark }) {
   }, []);
 
   useEffect(() => {
-    const ids = ["about", "projects", "skills", "contact"];
+    const ids = ["about", "experience", "projects", "skills", "contact"];
     const fn = () => {
       const scrollY = window.scrollY;
       const atBottom = scrollY + window.innerHeight >= document.body.scrollHeight - 40;

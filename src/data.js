@@ -19,7 +19,13 @@ export const PROJECTS = [
     name: "Apex Companion",
     tag: "Cross-Platform · Mobile",
     desc: "Flutter app for Apex Legends with real-time map rotation alerts, player stat tracking, RP progression graphs, and multi-profile support. Ships on Android, iOS, Windows, and Linux.",
-    tech: ["Flutter / Dart", "Riverpod", "Node.js", "Express", "GitHub Actions"],
+    tech: [
+      "Flutter / Dart",
+      "Riverpod",
+      "Node.js",
+      "Express",
+      "GitHub Actions",
+    ],
     gh: "https://github.com/ajwadtahmid/Unofficial-Apex-Companion",
   },
   {
@@ -92,7 +98,38 @@ export const SKILLS = [
   },
 ];
 
-export const ROLES = ["Software Engineer.", "Full-Stack Developer.", "Problem Solver."];
+export const ROLES = [
+  "Software Engineer.",
+  "Full-Stack Developer.",
+  "Problem Solver.",
+];
+
+export const RESUME_URL =
+  "https://drive.google.com/file/d/1KMFSPUUP1jbwa9RSZxjZNKlxFUOfN_5X/view?usp=drive_link";
+
+export const EXPERIENCE = [
+  {
+    type: "freelance",
+    org: "Self-Employed",
+    role: "Freelance Developer",
+    location: "Remote",
+    period: "Apr 2026 – Present",
+  },
+  {
+    type: "education",
+    org: "University of California, Irvine",
+    role: "B.S. Computer Science",
+    location: "Irvine, CA",
+    period: "Sept 2023 – June 2025",
+  },
+  {
+    type: "work",
+    org: "NHK Laboratories Inc.",
+    role: "Regulatory Affairs Associate",
+    location: "Santa Fe Springs, CA",
+    period: "Feb 2020 – Sept 2023",
+  },
+];
 
 export const CONTACT_EMAIL = "contact@ajwadtahmid.com";
 

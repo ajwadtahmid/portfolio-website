@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTypewriter, useScrollProgress } from "../hooks";
-import { ROLES } from "../data";
+import { ROLES, RESUME_URL } from "../data";
 import ScrambleName from "./ScrambleName";
 import Particles from "./Particles";
 
@@ -61,6 +61,9 @@ export default function Hero({ dark }) {
           </a>
           <a href="#contact" className="btn btn-o">
             Contact Me
+          </a>
+          <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="btn btn-o btn-resume">
+            Resume ↓
           </a>
         </div>
       </div>

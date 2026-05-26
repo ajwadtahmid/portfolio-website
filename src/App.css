@@ -129,6 +129,10 @@ body {
 }
 .btn-o:hover { background: rgba(41,151,255,.12); border-color: rgba(41,151,255,.6); }
 html.lm .btn-o:hover { background: rgba(0,102,204,.08); border-color: rgba(0,102,204,.7); }
+.btn-resume { border-color: var(--bd); color: var(--t2); }
+.btn-resume:hover { background: rgba(255,255,255,.06); border-color: var(--t3); color: var(--t1); }
+html.lm .btn-resume { border-color: var(--bd); color: var(--t2); }
+html.lm .btn-resume:hover { background: rgba(0,0,0,.04); border-color: var(--t3); }
 
 /* ── Chip / pill base ── */
 .chip, .tp { border: 1px solid var(--bd); background: var(--card); border-radius: 9999px; letter-spacing: -.01em; }
@@ -137,6 +141,7 @@ html.lm .btn-o:hover { background: rgba(0,102,204,.08); border-color: rgba(0,102
 .chip {
   color: var(--t3); cursor: default;
   padding: .375rem .875rem; font-size: .875rem;
+  display: inline-flex; align-items: center; gap: .375rem;
   transition: border-color .2s, color .2s, transform .2s;
 }
 .chip:hover { color: var(--ac); transform: translateY(-2px); }
@@ -306,6 +311,74 @@ html.lm .hero::after { content:''; position:absolute; inset:0; pointer-events:no
 .social-link { display:flex; align-items:center; gap:.5rem; color:var(--t2); font-size:.9rem; letter-spacing:-.01em; text-decoration:none; transition:opacity .2s; }
 .social-link:hover { opacity:.6; }
 .copy-btn { padding:2px 8px; border-radius:6px; background:var(--card); font-size:.7rem; cursor:pointer; transition:color .2s,border-color .2s; letter-spacing:-.01em; border:1px solid var(--bd); }
+
+/* ── Experience / Timeline ── */
+.exp { --exp-bg: var(--bg1); padding: 6rem 1.25rem; background: var(--exp-bg); }
+
+/* center vertical gradient line */
+.exp-timeline { position: relative; margin-top: 1rem; }
+.exp-timeline::before {
+  content: ''; position: absolute;
+  left: calc(50% - 0.5px); top: 26px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--ac) 0%, rgba(41,151,255,.2) 70%, transparent 100%);
+}
+html.lm .exp-timeline::before {
+  background: linear-gradient(to bottom, var(--ac) 0%, rgba(0,102,204,.15) 70%, transparent 100%);
+}
+
+/* 3-column alternating grid per item */
+.exp-item {
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr;
+  align-items: center;
+  gap: 0 2rem;
+  padding-bottom: 3rem;
+}
+.exp-item:last-child { padding-bottom: 0; }
+
+/* node always in center column */
+.exp-node {
+  grid-column: 2; grid-row: 1;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--card);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1.5px solid var(--ac);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ac);
+  box-shadow: 0 0 24px var(--shadow), 0 0 0 6px var(--exp-bg);
+  position: relative; z-index: 1;
+  margin: 0 auto;
+}
+
+/* card column alternates */
+.exp-item--left  .exp-card { grid-column: 1; grid-row: 1; }
+.exp-item--right .exp-card { grid-column: 3; grid-row: 1; }
+
+/* card styled like project cards */
+.exp-card {
+  display: flex; flex-direction: column; gap: 1rem;
+  padding: 1.5rem;
+}
+.exp-org  { font-size: 1.2rem; font-weight: 700; letter-spacing: -.025em; color: var(--t1); }
+.exp-role { font-size: .9375rem; color: var(--t2); letter-spacing: -.01em; line-height: 1.55; }
+.exp-note { font-size: .875rem; color: var(--t3); letter-spacing: -.01em; line-height: 1.6; font-style: italic; }
+.exp-chips { display: flex; flex-wrap: wrap; gap: .375rem; margin-top: auto; }
+
+/* mobile: collapse to left-line flex layout */
+@media (max-width: 640px) {
+  .exp-timeline::before { left: 25px; top: 26px; }
+  .exp-item {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    padding-bottom: 2rem;
+  }
+  .exp-node {
+    grid-column: unset; grid-row: unset;
+    flex-shrink: 0; margin: 0;
+  }
+  .exp-item--left  .exp-card,
+  .exp-item--right .exp-card { grid-column: unset; grid-row: unset; flex: 1; }
+}
 
 .footer { padding:2rem 1.25rem; background:var(--bg1); border-top:1px solid var(--bd); }
 .footer-inner { max-width:64rem; margin:0 auto; display:flex; align-items:center; justify-content:center; }
