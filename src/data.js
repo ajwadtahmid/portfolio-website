@@ -1,0 +1,104 @@
+import { GraduationCapIcon, MapPinIcon } from "./icons";
+
+export const ABOUT_PILLS = [
+  { Icon: GraduationCapIcon, text: "B.S. Computer Science — UCI, 2025" },
+  { Icon: MapPinIcon, text: "Hawaiian Gardens, CA · Open to Relocation" },
+];
+
+export const PROJECTS = [
+  {
+    id: 0,
+    name: "Fabflix",
+    tag: "Full-Stack · Cloud",
+    desc: "Scalable movie-browsing web app on AWS with Apache Tomcat, Docker, and Kubernetes. Secure auth, Google reCAPTCHA, fuzzy search, and a load-balanced architecture with HTTPS via Let's Encrypt.",
+    tech: ["Java", "AWS", "Docker", "Kubernetes", "MySQL", "JavaScript"],
+    gh: "https://github.com/uci-jherold2-2025spring-cs122b/2025-spring-cs-122b-ajwad-122b",
+  },
+  {
+    id: 1,
+    name: "Apex Companion",
+    tag: "Cross-Platform · Mobile",
+    desc: "Flutter app for Apex Legends with real-time map rotation alerts, player stat tracking, RP progression graphs, and multi-profile support. Ships on Android, iOS, Windows, and Linux.",
+    tech: ["Flutter / Dart", "Riverpod", "Node.js", "Express", "GitHub Actions"],
+    gh: "https://github.com/ajwadtahmid/Unofficial-Apex-Companion",
+  },
+  {
+    id: 2,
+    name: "SpydrNotes",
+    tag: "Web App · Productivity",
+    desc: "Collaborative note-taking app with real-time sync, markdown support, tag-based organisation, and full-text search. Features offline-first architecture via Service Workers.",
+    tech: ["React", "Node.js", "Socket.io", "PostgreSQL", "IndexedDB"],
+    gh: "https://github.com/ajwadtahmid/SpydrNotes",
+  },
+  {
+    id: 3,
+    name: "Search Engine",
+    tag: "Information Retrieval",
+    desc: "Full-featured search engine with TF-IDF scoring, HTML tag analysis, bigram index, cosine similarity, and PageRank. Includes tokenization, lemmatization, and a GUI with built-in spell check.",
+    tech: ["Python", "NLP", "TF-IDF", "Inverted Index", "PageRank"],
+    gh: "https://github.com/ajwadtahmid/CompSci121",
+  },
+  {
+    id: 4,
+    name: "Sentiment AI",
+    tag: "Machine Learning · NLP",
+    desc: "Fine-tuned BERT-based sentiment classifier achieving 93% accuracy on multi-domain reviews. REST API wrapper with batch inference, confidence scoring, and a React dashboard for live analysis.",
+    tech: ["Python", "PyTorch", "HuggingFace", "FastAPI", "React"],
+    gh: "https://github.com/ajwadtahmid/sentiment-ai",
+  },
+  {
+    id: 5,
+    name: "VAE Recommender",
+    tag: "Deep Learning · RecSys",
+    desc: "Variational Autoencoder recommendation system trained on collaborative filtering data. Outperforms matrix factorisation baselines by 11% NDCG on the MovieLens 1M dataset.",
+    tech: ["Python", "PyTorch", "VAE", "Collaborative Filtering", "NumPy"],
+    gh: "https://github.com/ajwadtahmid/vae-recommender",
+  },
+];
+
+export const SKILLS = [
+  {
+    cat: "Languages",
+    items: [
+      "Python",
+      "C++",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Flutter / Dart",
+      "Kotlin",
+      "SQL",
+    ],
+  },
+  {
+    cat: "Frameworks",
+    items: ["React", "React Native", "Node.js", "Flask", "Express"],
+  },
+  {
+    cat: "Infrastructure",
+    items: [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "MySQL",
+      "Apache Tomcat",
+      "Maven",
+    ],
+  },
+  {
+    cat: "Tools & Practices",
+    items: ["Git", "GitHub Actions", "Android Studio", "CI / CD", "REST APIs"],
+  },
+];
+
+export const ROLES = ["Software Engineer.", "Full-Stack Developer.", "Problem Solver."];
+
+export const CONTACT_EMAIL = "contact@ajwadtahmid.com";
+
+export const STATS = [
+  { end: 1000, suf: "+", label: "GitHub Commits" },
+  { end: 10, suf: "+", label: "Projects Shipped" },
+  { end: 50, suf: "+", label: "Features Deployed" },
+  { end: 20, suf: "+", label: "Technologies" },
+];
