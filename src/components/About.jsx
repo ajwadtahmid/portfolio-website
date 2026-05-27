@@ -7,7 +7,7 @@ import WaveDivider from "./WaveDivider";
 
 const ABOUT_PILLS = [
   { Icon: GraduationCapIcon, text: "B.S. Computer Science — UCI, 2025" },
-  { Icon: MapPinIcon, text: "Hawaiian Gardens, CA · Open to Relocation" },
+  { Icon: MapPinIcon, text: "Southern California · Open to Relocation" },
 ];
 
 export default function About() {
@@ -22,10 +22,11 @@ export default function About() {
         <div className={`about-grid fu d1${vis ? " vis" : ""}`}>
           <div className="about-bio">
             <p>
-              I'm a Computer Science graduate with an unhealthy obsession with
-              open source and emerging tech. I love solving complex problems and
-              building products that don't make people want to throw their
-              phone.
+              I'm a Computer Science graduate who believes technology should
+              solve real problems, and solve them well. I'm experienced across
+              full-stack web, mobile, and machine learning, and I take pride in
+              the craft. Clean code, thoughtful design, and reliability aren't
+              nice-to-haves; they're fundamental.
             </p>
             <p>
               Outside the terminal, you'll catch me gaming, exploring new

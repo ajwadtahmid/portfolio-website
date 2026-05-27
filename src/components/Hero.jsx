@@ -51,10 +51,7 @@ export default function Hero({ dark }) {
           <span className="cr" aria-hidden="true" />
         </div>
 
-        <p className="hero-tagline h3">
-          I build scalable applications that solve real problems — and that
-          people actually enjoy using.
-        </p>
+        <p className="hero-tagline h3">Products, built with intention.</p>
 
         <div className="hero-cta h4">
           <a href="#projects" className="btn btn-p">

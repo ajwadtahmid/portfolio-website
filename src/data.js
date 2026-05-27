@@ -58,14 +58,25 @@ export const SKILLS = [
       "Java",
       "JavaScript",
       "TypeScript",
-      "Flutter / Dart",
+      "Dart",
       "Kotlin",
       "SQL",
     ],
   },
   {
     cat: "Frameworks",
-    items: ["React", "React Native", "Node.js", "Flask", "Express"],
+    items: [
+      "React",
+      "React Native",
+      "Node.js",
+      "Flask",
+      "Express",
+      "FastAPI",
+      "Flutter",
+      "PyTorch",
+      "HuggingFace",
+      "Socket.io",
+    ],
   },
   {
     cat: "Infrastructure",
@@ -75,20 +86,22 @@ export const SKILLS = [
       "Kubernetes",
       "Linux",
       "MySQL",
+      "PostgreSQL",
       "Apache Tomcat",
       "Maven",
     ],
   },
   {
     cat: "Tools & Practices",
-    items: ["Git", "GitHub Actions", "Android Studio", "CI / CD", "REST APIs"],
+    items: ["Git", "GitHub Actions", "Android Studio"],
   },
 ];
 
 export const ROLES = [
   "Software Engineer.",
   "Full-Stack Developer.",
-  "Problem Solver.",
+  "Backend Architect.",
+  "Product Engineer.",
 ];
 
 export const RESUME_URL =
@@ -123,6 +136,6 @@ export const CONTACT_EMAIL = "contact@ajwadtahmid.com";
 export const STATS = [
   { end: 1000, suf: "+", label: "GitHub Commits" },
   { end: 10, suf: "+", label: "Projects Shipped" },
-  { end: 50, suf: "+", label: "Features Deployed" },
   { end: 20, suf: "+", label: "Technologies" },
+  { end: 3, suf: "+", label: "Years Building Software" },
 ];
