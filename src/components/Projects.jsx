@@ -2,6 +2,7 @@ import { useInView } from "../hooks";
 import { PROJECTS } from "../data";
 import SectionH2 from "./SectionH2";
 import ProjectCard from "./ProjectCard";
+import WaveDivider from "./WaveDivider";
 
 export default function Projects() {
   const [ref, vis] = useInView();
@@ -21,6 +22,7 @@ export default function Projects() {
           </a>
         </div>
       </div>
+      <WaveDivider nextBg="var(--bg2)" />
     </section>
   );
 }

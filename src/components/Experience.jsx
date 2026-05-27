@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useInView } from "../hooks";
 import { EXPERIENCE } from "../data";
 import SectionH2 from "./SectionH2";
+import WaveDivider from "./WaveDivider";
 import { FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa";
 
 const TYPE_ICONS  = { education: FaGraduationCap, work: FaBriefcase, freelance: FaCode };
@@ -74,6 +75,7 @@ export default function Experience() {
           })}
         </div>
       </div>
+      <WaveDivider nextBg="var(--bg3)" />
     </section>
   );
 }

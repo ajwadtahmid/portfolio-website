@@ -3,6 +3,7 @@ import { useTypewriter, useScrollProgress } from "../hooks";
 import { ROLES, RESUME_URL } from "../data";
 import ScrambleName from "./ScrambleName";
 import Particles from "./Particles";
+import WaveDivider from "./WaveDivider";
 
 export default function Hero({ dark }) {
   useScrollProgress();
@@ -68,6 +69,7 @@ export default function Hero({ dark }) {
         </div>
       </div>
 
+      <WaveDivider nextBg="var(--bg2)" />
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { useInView } from "../hooks";
 import { STATS, ABOUT_PILLS } from "../data";
 import SectionH2 from "./SectionH2";
 import StatCard from "./StatCard";
+import WaveDivider from "./WaveDivider";
 
 export default function About() {
   const [ref, vis] = useInView();
@@ -32,6 +33,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      <WaveDivider nextBg="var(--bg1)" />
     </section>
   );
 }

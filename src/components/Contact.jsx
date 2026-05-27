@@ -3,6 +3,7 @@ import { useInView } from "../hooks";
 import { GithubIcon, LinkedInIcon, MailIcon } from "../icons";
 import { CONTACT_EMAIL } from "../data";
 import SectionH2 from "./SectionH2";
+import WaveDivider from "./WaveDivider";
 
 const SOCIALS = [
   {
@@ -172,6 +173,7 @@ export default function Contact() {
           ))}
         </div>
       </div>
+      <WaveDivider nextBg="var(--bg1)" />
     </section>
   );
 }

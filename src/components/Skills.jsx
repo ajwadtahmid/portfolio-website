@@ -1,6 +1,7 @@
 import { useInView } from "../hooks";
 import { SKILLS } from "../data";
 import SectionH2 from "./SectionH2";
+import WaveDivider from "./WaveDivider";
 import {
   SiPython, SiCplusplus, SiJavascript, SiTypescript, SiFlutter, SiKotlin,
   SiReact, SiNodedotjs, SiFlask, SiExpress,
@@ -60,6 +61,7 @@ export default function Skills() {
           ))}
         </div>
       </div>
+      <WaveDivider nextBg="var(--bg3)" />
     </section>
   );
 }
