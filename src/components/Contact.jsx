@@ -162,11 +162,25 @@ export default function Contact() {
                   className="copy-btn"
                   title="Copy email address"
                   style={{
-                    color: copyState === "copied" ? "#34d399" : copyState === "failed" ? "#f87171" : "var(--t3)",
-                    borderColor: copyState === "copied" ? "rgba(52,211,153,.3)" : copyState === "failed" ? "rgba(248,113,113,.3)" : "var(--bd)",
+                    color:
+                      copyState === "copied"
+                        ? "#34d399"
+                        : copyState === "failed"
+                          ? "#f87171"
+                          : "var(--t3)",
+                    borderColor:
+                      copyState === "copied"
+                        ? "rgba(52,211,153,.3)"
+                        : copyState === "failed"
+                          ? "rgba(248,113,113,.3)"
+                          : "var(--bd)",
                   }}
                 >
-                  {copyState === "copied" ? "✓ Copied" : copyState === "failed" ? "Failed" : "Copy"}
+                  {copyState === "copied"
+                    ? "✓ Copied"
+                    : copyState === "failed"
+                      ? "Failed"
+                      : "Copy"}
                 </button>
               )}
             </div>

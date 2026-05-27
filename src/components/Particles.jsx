@@ -5,9 +5,9 @@ const acLine = (a) => `rgba(41,151,255,${a})`;
 const AC_DOT = "rgba(41,151,255,.15)";
 
 const PARTICLE_COUNT = 55;
-const CONNECT_DIST   = 140; // px — max distance to draw a connecting line
-const REPULSE_DIST   = 200; // px — mouse repulsion radius
-const MAX_VELOCITY   = 0.32;
+const CONNECT_DIST = 140; // px — max distance to draw a connecting line
+const REPULSE_DIST = 200; // px — mouse repulsion radius
+const MAX_VELOCITY = 0.32;
 
 export default function Particles() {
   const ref = useRef(null);
@@ -41,7 +41,7 @@ export default function Particles() {
         const mdy = mouseRef.current.y - p.y;
         const distToMouse = Math.sqrt(mdx * mdx + mdy * mdy);
         if (distToMouse < REPULSE_DIST) {
-          const force = (REPULSE_DIST - distToMouse) / REPULSE_DIST * 0.08;
+          const force = ((REPULSE_DIST - distToMouse) / REPULSE_DIST) * 0.08;
           p.vx -= (mdx / distToMouse) * force;
           p.vy -= (mdy / distToMouse) * force;
         }
@@ -91,7 +91,13 @@ export default function Particles() {
     <canvas
       ref={ref}
       aria-hidden="true"
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+      }}
     />
   );
 }

@@ -5,7 +5,9 @@ export default function Footer() {
   return (
     <footer className="footer grain">
       <div ref={ref} className={`footer-inner fu d1${vis ? " vis" : ""}`}>
-        <p className="footer-text">© 2023 - Present. Ajwad Tahmid Ayon. All Rights Reserved.</p>
+        <p className="footer-text">
+          © 2023 - Present. Ajwad Tahmid Ayon. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

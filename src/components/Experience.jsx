@@ -5,8 +5,16 @@ import SectionH2 from "./SectionH2";
 import WaveDivider from "./WaveDivider";
 import { FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa";
 
-const TYPE_ICONS  = { education: FaGraduationCap, work: FaBriefcase, freelance: FaCode };
-const TYPE_LABELS = { education: "Education", work: "Work", freelance: "Freelance" };
+const TYPE_ICONS = {
+  education: FaGraduationCap,
+  work: FaBriefcase,
+  freelance: FaCode,
+};
+const TYPE_LABELS = {
+  education: "Education",
+  work: "Work",
+  freelance: "Freelance",
+};
 
 function ExpCard({ item, vis }) {
   const ref = useRef(null);
@@ -14,17 +22,17 @@ function ExpCard({ item, vis }) {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  * 2 - 1;
-    const y = (e.clientY - r.top)  / r.height * 2 - 1;
-    el.style.transform   = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 5}deg) translateZ(6px)`;
-    el.style.boxShadow   = "0 20px 60px var(--shadow), 0 0 80px var(--glow)";
-    el.style.transition  = "transform .08s ease, box-shadow .08s ease";
+    const x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    const y = ((e.clientY - r.top) / r.height) * 2 - 1;
+    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 5}deg) translateZ(6px)`;
+    el.style.boxShadow = "0 20px 60px var(--shadow), 0 0 80px var(--glow)";
+    el.style.transition = "transform .08s ease, box-shadow .08s ease";
   };
   const onLeave = () => {
     const el = ref.current;
     if (!el) return;
-    el.style.transform  = "";
-    el.style.boxShadow  = "";
+    el.style.transform = "";
+    el.style.boxShadow = "";
     el.style.transition = "transform .5s var(--ease), box-shadow .5s ease";
   };
   return (
@@ -35,7 +43,10 @@ function ExpCard({ item, vis }) {
       className="glass gb exp-card"
     >
       <div>
-        <span className={`sb${vis ? " vis" : ""}`} style={{ fontSize: "0.73rem", marginBottom: 6 }}>
+        <span
+          className={`sb${vis ? " vis" : ""}`}
+          style={{ fontSize: "0.73rem", marginBottom: 6 }}
+        >
           {TYPE_LABELS[item.type]}
         </span>
         <p className="exp-org">{item.org}</p>
@@ -53,7 +64,12 @@ function ExpCard({ item, vis }) {
 export default function Experience() {
   const [ref, vis] = useInView();
   return (
-    <section id="experience" ref={ref} className="exp grain" aria-label="Experience">
+    <section
+      id="experience"
+      ref={ref}
+      className="exp grain"
+      aria-label="Experience"
+    >
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>Experience</span>
         <SectionH2 vis={vis}>Where I've been.</SectionH2>

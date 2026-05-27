@@ -10,13 +10,21 @@ export default function About() {
     <section id="about" ref={ref} className="about grain" aria-label="About">
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>About</span>
-        <SectionH2 vis={vis}>Building apps people actually enjoy using.</SectionH2>
+        <SectionH2 vis={vis}>
+          Building apps people actually enjoy using.
+        </SectionH2>
         <div className={`about-grid fu d1${vis ? " vis" : ""}`}>
           <div className="about-bio">
             <p>
-              I'm a Computer Science graduate with an unhealthy obsession with open source and emerging tech. I love solving complex problems and building products that don't make people want to throw their phone.
+              I'm a Computer Science graduate with an unhealthy obsession with
+              open source and emerging tech. I love solving complex problems and
+              building products that don't make people want to throw their
+              phone.
             </p>
-            <p>Outside the terminal, you'll catch me gaming, exploring new technology, or enjoying nature on the trail.</p>
+            <p>
+              Outside the terminal, you'll catch me gaming, exploring new
+              technology, or enjoying nature on the trail.
+            </p>
           </div>
           <div className="about-stats">
             {STATS.map((s, i) => (

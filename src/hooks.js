@@ -17,7 +17,7 @@ export function useInView(t = 0.12) {
     );
     o.observe(el);
     return () => o.disconnect();
-  // t is a mount-time constant; re-running would create a duplicate observer
+    // t is a mount-time constant; re-running would create a duplicate observer
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return [ref, vis];
 }
@@ -55,7 +55,7 @@ export function useTypewriter(words, ms = 80, pause = 2700) {
     };
     id = setTimeout(run, 900);
     return () => clearTimeout(id);
-  // words/ms/pause are static call-site values; re-running would restart the animation
+    // words/ms/pause are static call-site values; re-running would restart the animation
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return txt;
 }
@@ -72,7 +72,7 @@ export function useCountUp(end, dur = 1300, shouldStart = false) {
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
-  // dur is a stable default; including it would restart the count on unrelated re-renders
+    // dur is a stable default; including it would restart the count on unrelated re-renders
   }, [shouldStart, end]); // eslint-disable-line react-hooks/exhaustive-deps
   return n;
 }

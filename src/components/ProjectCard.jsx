@@ -9,8 +9,8 @@ export default function ProjectCard({ p, i, vis }) {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width * 2 - 1;
-    const y = (e.clientY - r.top) / r.height * 2 - 1;
+    const x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    const y = ((e.clientY - r.top) / r.height) * 2 - 1;
     el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 5}deg) translateZ(6px)`;
     el.style.boxShadow = "0 20px 60px var(--shadow), 0 0 80px var(--glow)";
     el.style.transition = "transform .08s ease,box-shadow .08s ease";
@@ -23,9 +23,17 @@ export default function ProjectCard({ p, i, vis }) {
     el.style.transition = "transform .5s var(--ease),box-shadow .5s ease";
   };
   return (
-    <article ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className={`gb glass project-card fu d${Math.min(i + 1, MAX_DELAY_CLASS)}${vis ? " vis" : ""}`}>
+    <article
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className={`gb glass project-card fu d${Math.min(i + 1, MAX_DELAY_CLASS)}${vis ? " vis" : ""}`}
+    >
       <div>
-        <span className={`sb${vis ? " vis" : ""}`} style={{ fontSize: "0.73rem", marginBottom: 6 }}>
+        <span
+          className={`sb${vis ? " vis" : ""}`}
+          style={{ fontSize: "0.73rem", marginBottom: 6 }}
+        >
           {p.tag}
         </span>
         <h3 className="project-name">{p.name}</h3>
@@ -38,7 +46,12 @@ export default function ProjectCard({ p, i, vis }) {
           </span>
         ))}
       </div>
-      <a href={p.gh} target="_blank" rel="noopener noreferrer" className="project-gh">
+      <a
+        href={p.gh}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-gh"
+      >
         <GithubIcon /> View on GitHub
       </a>
     </article>

@@ -3,10 +3,27 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const PROMPT = "visitor@ajwad:~$";
 
 const ALL_COMMANDS = [
-  "help", "neofetch", "whoami", "skills", "projects", "contact",
-  "ls", "pwd", "clear", "exit", "quit",
-  "sudo", "vim", "nano", "coffee", "git", "node", "python",
-  "matrix", "hire me", "uci",
+  "help",
+  "neofetch",
+  "whoami",
+  "skills",
+  "projects",
+  "contact",
+  "ls",
+  "pwd",
+  "clear",
+  "exit",
+  "quit",
+  "sudo",
+  "vim",
+  "nano",
+  "coffee",
+  "git",
+  "node",
+  "python",
+  "matrix",
+  "hire me",
+  "uci",
 ];
 
 const NEOFETCH = `\
@@ -60,66 +77,118 @@ const OUTPUTS = {
   GitHub    github.com/ajwadtahmid
   LinkedIn  linkedin.com/in/ajwad-tahmid-ayon`,
 
-  ls:     `about/  experience/  projects/  skills/  contact/`,
-  pwd:    `/home/visitor/ajwadtahmid.com`,
-  sudo:   `sudo: you are not in the sudoers file. This incident will be reported.`,
-  vim:    `You're in vim now. Good luck getting out. (hint: try :q!)`,
-  nano:   `Opening nano... just kidding. Use the contact form instead.`,
+  ls: `about/  experience/  projects/  skills/  contact/`,
+  pwd: `/home/visitor/ajwadtahmid.com`,
+  sudo: `sudo: you are not in the sudoers file. This incident will be reported.`,
+  vim: `You're in vim now. Good luck getting out. (hint: try :q!)`,
+  nano: `Opening nano... just kidding. Use the contact form instead.`,
   coffee: `Error: coffee not found. Please refill and try again.`,
-  git:    `fatal: not a git repository (or any of the parent directories): .git`,
-  node:   `Welcome to Node.js. Type .exit to quit. (hint: you can't)`,
+  git: `fatal: not a git repository (or any of the parent directories): .git`,
+  node: `Welcome to Node.js. Type .exit to quit. (hint: you can't)`,
   python: `Python 3.12.0 — Type "help", "copyright", or "license" for more information.`,
   matrix: `Wake up, visitor. The portfolio goes deeper than you think.`,
   "hire me": `Great choice. Run 'contact' for details.`,
-  uci:    `University of California, Irvine · B.S. Computer Science · Class of 2025 · Go Anteaters!`,
+  uci: `University of California, Irvine · B.S. Computer Science · Class of 2025 · Go Anteaters!`,
 };
 
 const CloseIcon = () => (
   <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
-    <line x1="1" y1="1" x2="5" y2="5" stroke="rgba(0,0,0,0.55)" strokeWidth="1.5" strokeLinecap="round" />
-    <line x1="5" y1="1" x2="1" y2="5" stroke="rgba(0,0,0,0.55)" strokeWidth="1.5" strokeLinecap="round" />
+    <line
+      x1="1"
+      y1="1"
+      x2="5"
+      y2="5"
+      stroke="rgba(0,0,0,0.55)"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <line
+      x1="5"
+      y1="1"
+      x2="1"
+      y2="5"
+      stroke="rgba(0,0,0,0.55)"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const MaximizeIcon = ({ maximized }) => (
   <svg width="7" height="7" viewBox="0 0 7 7" aria-hidden="true">
     {maximized ? (
-      <path d="M2,1 L6,1 L6,5 M1,2 L5,2 L5,6 L1,6 Z" stroke="rgba(0,0,0,0.55)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path
+        d="M2,1 L6,1 L6,5 M1,2 L5,2 L5,6 L1,6 Z"
+        stroke="rgba(0,0,0,0.55)"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
     ) : (
-      <path d="M4,1 L6,1 L6,3 M1,4 L1,6 L3,6 M5.5,1.5 L1.5,5.5" stroke="rgba(0,0,0,0.55)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path
+        d="M4,1 L6,1 L6,3 M1,4 L1,6 L3,6 M5.5,1.5 L1.5,5.5"
+        stroke="rgba(0,0,0,0.55)"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
     )}
   </svg>
 );
 
 export default function Terminal({ onClose }) {
   const [history, setHistory] = useState([
-    { type: "output", text: "Welcome to Ajwad's terminal. Type 'help' for commands." },
+    {
+      type: "output",
+      text: "Welcome to Ajwad's terminal. Type 'help' for commands.",
+    },
   ]);
-  const [input, setInput]       = useState("");
+  const [input, setInput] = useState("");
   const [cmdHistory, setCmdHistory] = useState([]);
-  const [histIdx, setHistIdx]   = useState(-1);
+  const [histIdx, setHistIdx] = useState(-1);
   const [maximized, setMaximized] = useState(false);
-  const inputRef  = useRef(null);
+  const inputRef = useRef(null);
   const bottomRef = useRef(null);
 
-  useEffect(() => { inputRef.current?.focus(); }, []);
-  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [history]);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [history]);
 
-  const runCommand = useCallback((raw) => {
-    const cmd = raw.trim().toLowerCase();
-    if (!cmd) return;
-    setCmdHistory((h) => [raw, ...h]);
-    setHistIdx(-1);
-    if (cmd === "clear") { setHistory([]); return; }
-    if (cmd === "exit" || cmd === "quit") { onClose(); return; }
-    const response = OUTPUTS[cmd]
-      ?? `command not found: ${cmd.split(" ")[0]}. Type 'help' for available commands.`;
-    setHistory((h) => [...h, { type: "input", text: raw }, { type: "output", text: response }]);
-  }, [onClose]);
+  const runCommand = useCallback(
+    (raw) => {
+      const cmd = raw.trim().toLowerCase();
+      if (!cmd) return;
+      setCmdHistory((h) => [raw, ...h]);
+      setHistIdx(-1);
+      if (cmd === "clear") {
+        setHistory([]);
+        return;
+      }
+      if (cmd === "exit" || cmd === "quit") {
+        onClose();
+        return;
+      }
+      const response =
+        OUTPUTS[cmd] ??
+        `command not found: ${cmd.split(" ")[0]}. Type 'help' for available commands.`;
+      setHistory((h) => [
+        ...h,
+        { type: "input", text: raw },
+        { type: "output", text: response },
+      ]);
+    },
+    [onClose],
+  );
 
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
-      runCommand(input); setInput("");
+      runCommand(input);
+      setInput("");
     } else if (e.key === "Tab") {
       e.preventDefault();
       const partial = input.toLowerCase().trimStart();
@@ -137,11 +206,13 @@ export default function Terminal({ onClose }) {
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       const next = Math.min(histIdx + 1, cmdHistory.length - 1);
-      setHistIdx(next); setInput(cmdHistory[next] ?? "");
+      setHistIdx(next);
+      setInput(cmdHistory[next] ?? "");
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
       const next = Math.max(histIdx - 1, -1);
-      setHistIdx(next); setInput(next === -1 ? "" : cmdHistory[next]);
+      setHistIdx(next);
+      setInput(next === -1 ? "" : cmdHistory[next]);
     }
   };
 
@@ -153,9 +224,30 @@ export default function Terminal({ onClose }) {
       >
         <div className="term-titlebar">
           <div className="term-traffic">
-            <button className="term-btn term-btn--red"   onClick={onClose}                       aria-label="Close">    <CloseIcon /></button>
-            <button className="term-btn term-btn--yellow" onClick={onClose}                       aria-label="Close">    <CloseIcon /></button>
-            <button className="term-btn term-btn--green"  onClick={() => setMaximized((m) => !m)} aria-label="Maximise"> <MaximizeIcon maximized={maximized} /></button>
+            <button
+              className="term-btn term-btn--red"
+              onClick={onClose}
+              aria-label="Close"
+            >
+              {" "}
+              <CloseIcon />
+            </button>
+            <button
+              className="term-btn term-btn--yellow"
+              onClick={onClose}
+              aria-label="Close"
+            >
+              {" "}
+              <CloseIcon />
+            </button>
+            <button
+              className="term-btn term-btn--green"
+              onClick={() => setMaximized((m) => !m)}
+              aria-label="Maximise"
+            >
+              {" "}
+              <MaximizeIcon maximized={maximized} />
+            </button>
           </div>
           <span className="term-title">visitor@ajwad — bash</span>
           <span className="term-hint">esc to close</span>
@@ -164,7 +256,9 @@ export default function Terminal({ onClose }) {
         <div className="term-body" onClick={() => inputRef.current?.focus()}>
           {history.map((line, i) => (
             <div key={i} className={`tl tl--${line.type}`}>
-              {line.type === "input" && <span className="term-prompt">{PROMPT}&nbsp;</span>}
+              {line.type === "input" && (
+                <span className="term-prompt">{PROMPT}&nbsp;</span>
+              )}
               <span className="term-text">{line.text}</span>
             </div>
           ))}

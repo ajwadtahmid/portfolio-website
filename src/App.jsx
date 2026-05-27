@@ -15,7 +15,9 @@ function App() {
   const [dark, setDark] = useState(true);
   const [termOpen, setTermOpen] = useState(false);
 
-  useLayoutEffect(() => { window.scrollTo(0, 0); }, []);
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("lm", !dark);
@@ -23,7 +25,10 @@ function App() {
 
   useEffect(() => {
     const fn = (e) => {
-      if (e.key === "Escape") { setTermOpen(false); return; }
+      if (e.key === "Escape") {
+        setTermOpen(false);
+        return;
+      }
       if (e.key === "`") {
         const tag = document.activeElement?.tagName;
         if (tag === "INPUT" || tag === "TEXTAREA") return;

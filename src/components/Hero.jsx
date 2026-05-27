@@ -63,7 +63,12 @@ export default function Hero({ dark }) {
           <a href="#contact" className="btn btn-o">
             Contact Me
           </a>
-          <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="btn btn-o btn-resume">
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-p"
+          >
             Resume ↓
           </a>
         </div>
