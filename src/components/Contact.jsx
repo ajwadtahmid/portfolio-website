@@ -6,22 +6,8 @@ import SectionH2 from "./SectionH2";
 import WaveDivider from "./WaveDivider";
 
 const SOCIALS = [
-  {
-    icon: <GithubIcon />,
-    label: "GitHub",
-    href: "https://github.com/ajwadtahmid",
-  },
-  {
-    icon: <LinkedInIcon />,
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ajwad-tahmid-ayon/",
-  },
-  {
-    icon: <MailIcon />,
-    label: "Email",
-    href: `mailto:${CONTACT_EMAIL}`,
-    isEmail: true,
-  },
+  { icon: <GithubIcon />,   label: "GitHub",   href: "https://github.com/ajwadtahmid" },
+  { icon: <LinkedInIcon />, label: "LinkedIn", href: "https://www.linkedin.com/in/ajwad-tahmid-ayon/" },
 ];
 
 export default function Contact() {
@@ -61,7 +47,7 @@ export default function Contact() {
       className="contact grain"
       aria-label="Contact"
     >
-      <div style={{ maxWidth: "30rem", margin: "0 auto" }}>
+      <div className="contact-inner-wrap">
         <span className={`sb${vis ? " vis" : ""}`}>Contact</span>
         <SectionH2 vis={vis}>Let's talk.</SectionH2>
         <p className={`contact-sub fu d1${vis ? " vis" : ""}`}>
@@ -130,7 +116,7 @@ export default function Contact() {
                 }
               />
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="contact-form-submit">
               <button
                 type="submit"
                 disabled={st === "sending"}
@@ -142,49 +128,25 @@ export default function Contact() {
           </form>
         )}
         <div className={`contact-socials fu d3${vis ? " vis" : ""}`}>
-          {SOCIALS.map(({ icon, label, href, isEmail }) => (
-            <div
-              key={label}
-              style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
-            >
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                {icon}
-                <span>{label}</span>
-              </a>
-              {isEmail && (
-                <button
-                  onClick={copyEmail}
-                  className="copy-btn"
-                  title="Copy email address"
-                  style={{
-                    color:
-                      copyState === "copied"
-                        ? "#34d399"
-                        : copyState === "failed"
-                          ? "#f87171"
-                          : "var(--t3)",
-                    borderColor:
-                      copyState === "copied"
-                        ? "rgba(52,211,153,.3)"
-                        : copyState === "failed"
-                          ? "rgba(248,113,113,.3)"
-                          : "var(--bd)",
-                  }}
-                >
-                  {copyState === "copied"
-                    ? "✓ Copied"
-                    : copyState === "failed"
-                      ? "Failed"
-                      : "Copy"}
-                </button>
-              )}
-            </div>
+          {SOCIALS.map(({ icon, label, href }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="social-link">
+              {icon}
+              <span>{label}</span>
+            </a>
           ))}
+          <div className="contact-email-row">
+            <a href={`mailto:${CONTACT_EMAIL}`} target="_blank" rel="noopener noreferrer" className="social-link">
+              <MailIcon />
+              <span>Email</span>
+            </a>
+            <button
+              onClick={copyEmail}
+              className={`copy-btn${copyState === "copied" ? " copy-btn--copied" : copyState === "failed" ? " copy-btn--failed" : ""}`}
+              title="Copy email address"
+            >
+              {copyState === "copied" ? "✓ Copied" : copyState === "failed" ? "Failed" : "Copy"}
+            </button>
+          </div>
         </div>
       </div>
       <WaveDivider nextBg="var(--bg1)" />

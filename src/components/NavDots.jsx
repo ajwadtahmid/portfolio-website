@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useActiveSection } from "../hooks";
 
 const SECTIONS = [
   { id: "hero",       label: "Home" },
@@ -9,27 +9,10 @@ const SECTIONS = [
   { id: "contact",    label: "Contact" },
 ];
 
-export default function NavDots() {
-  const [active, setActive] = useState("hero");
+const SECTION_IDS = SECTIONS.map((s) => s.id);
 
-  useEffect(() => {
-    const ids = SECTIONS.map((s) => s.id);
-    const fn = () => {
-      const scrollY = window.scrollY;
-      const atBottom = scrollY + window.innerHeight >= document.body.scrollHeight - 40;
-      if (atBottom) { setActive("contact"); return; }
-      const trigger = window.innerHeight * 0.35;
-      let current = "hero";
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop - trigger <= scrollY) current = id;
-      }
-      setActive(current);
-    };
-    window.addEventListener("scroll", fn, { passive: true });
-    fn();
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
+export default function NavDots() {
+  const active = useActiveSection(SECTION_IDS, "hero");
 
   return (
     <nav className="nav-dots" aria-label="Section navigation">

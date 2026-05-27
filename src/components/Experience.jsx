@@ -52,7 +52,6 @@ function ExpCard({ item, vis }) {
         <p className="exp-org">{item.org}</p>
         <p className="exp-role">{item.role}</p>
       </div>
-      {item.note && <p className="exp-note">{item.note}</p>}
       <div className="exp-chips">
         <span className="tech-chip">{item.period}</span>
         <span className="tech-chip">{item.location}</span>

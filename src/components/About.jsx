@@ -1,8 +1,14 @@
 import { useInView } from "../hooks";
-import { STATS, ABOUT_PILLS } from "../data";
+import { STATS } from "../data";
+import { GraduationCapIcon, MapPinIcon } from "../icons";
 import SectionH2 from "./SectionH2";
 import StatCard from "./StatCard";
 import WaveDivider from "./WaveDivider";
+
+const ABOUT_PILLS = [
+  { Icon: GraduationCapIcon, text: "B.S. Computer Science — UCI, 2025" },
+  { Icon: MapPinIcon, text: "Hawaiian Gardens, CA · Open to Relocation" },
+];
 
 export default function About() {
   const [ref, vis] = useInView();

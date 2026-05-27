@@ -1,13 +1,5 @@
-import { GraduationCapIcon, MapPinIcon } from "./icons";
-
-export const ABOUT_PILLS = [
-  { Icon: GraduationCapIcon, text: "B.S. Computer Science — UCI, 2025" },
-  { Icon: MapPinIcon, text: "Hawaiian Gardens, CA · Open to Relocation" },
-];
-
 export const PROJECTS = [
   {
-    id: 0,
     name: "Fabflix",
     tag: "Full-Stack · Cloud",
     desc: "Scalable movie-browsing web app on AWS with Apache Tomcat, Docker, and Kubernetes. Secure auth, Google reCAPTCHA, fuzzy search, and a load-balanced architecture with HTTPS via Let's Encrypt.",
@@ -15,7 +7,6 @@ export const PROJECTS = [
     gh: "https://github.com/uci-jherold2-2025spring-cs122b/2025-spring-cs-122b-ajwad-122b",
   },
   {
-    id: 1,
     name: "Apex Companion",
     tag: "Cross-Platform · Mobile",
     desc: "Flutter app for Apex Legends with real-time map rotation alerts, player stat tracking, RP progression graphs, and multi-profile support. Ships on Android, iOS, Windows, and Linux.",
@@ -29,7 +20,6 @@ export const PROJECTS = [
     gh: "https://github.com/ajwadtahmid/Unofficial-Apex-Companion",
   },
   {
-    id: 2,
     name: "SpydrNotes",
     tag: "Web App · Productivity",
     desc: "Collaborative note-taking app with real-time sync, markdown support, tag-based organisation, and full-text search. Features offline-first architecture via Service Workers.",
@@ -37,7 +27,6 @@ export const PROJECTS = [
     gh: "https://github.com/ajwadtahmid/SpydrNotes",
   },
   {
-    id: 3,
     name: "Search Engine",
     tag: "Information Retrieval",
     desc: "Full-featured search engine with TF-IDF scoring, HTML tag analysis, bigram index, cosine similarity, and PageRank. Includes tokenization, lemmatization, and a GUI with built-in spell check.",
@@ -45,7 +34,6 @@ export const PROJECTS = [
     gh: "https://github.com/ajwadtahmid/CompSci121",
   },
   {
-    id: 4,
     name: "Sentiment AI",
     tag: "Machine Learning · NLP",
     desc: "Fine-tuned BERT-based sentiment classifier achieving 93% accuracy on multi-domain reviews. REST API wrapper with batch inference, confidence scoring, and a React dashboard for live analysis.",
@@ -53,7 +41,6 @@ export const PROJECTS = [
     gh: "https://github.com/ajwadtahmid/sentiment-ai",
   },
   {
-    id: 5,
     name: "VAE Recommender",
     tag: "Deep Learning · RecSys",
     desc: "Variational Autoencoder recommendation system trained on collaborative filtering data. Outperforms matrix factorisation baselines by 11% NDCG on the MovieLens 1M dataset.",

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useAmbientSound } from "../hooks";
+import { useAmbientSound, useActiveSection } from "../hooks";
 import {
   SunIcon,
   MoonIcon,
@@ -10,18 +10,20 @@ import {
 } from "../icons";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about", id: "about" },
+  { label: "About",      href: "#about",      id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Projects",   href: "#projects",   id: "projects" },
+  { label: "Skills",     href: "#skills",     id: "skills" },
+  { label: "Contact",    href: "#contact",    id: "contact" },
 ];
+
+const NAV_IDS = NAV_LINKS.map((l) => l.id);
 
 export default function Nav({ dark, setDark, onTermOpen }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const closeMenu = useCallback(() => setOpen(false), []);
-  const [active, setActive] = useState("");
+  const active = useActiveSection(NAV_IDS);
   const [soundOn, toggleSound] = useAmbientSound();
 
   useEffect(() => {
@@ -34,29 +36,6 @@ export default function Nav({ dark, setDark, onTermOpen }) {
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  useEffect(() => {
-    const ids = ["about", "experience", "projects", "skills", "contact"];
-    const fn = () => {
-      const scrollY = window.scrollY;
-      const atBottom =
-        scrollY + window.innerHeight >= document.body.scrollHeight - 40;
-      if (atBottom) {
-        setActive("contact");
-        return;
-      }
-      const trigger = window.innerHeight * 0.35;
-      let current = "";
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop - trigger <= scrollY) current = id;
-      }
-      setActive(current);
-    };
-    window.addEventListener("scroll", fn, { passive: true });
-    fn();
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
@@ -178,7 +157,7 @@ export default function Nav({ dark, setDark, onTermOpen }) {
                 className="mob-overlay-social-link"
                 aria-label="GitHub"
               >
-                <GithubIcon />
+                <GithubIcon size={22} />
               </a>
               <a
                 href="https://www.linkedin.com/in/ajwad-tahmid-ayon/"
@@ -187,7 +166,7 @@ export default function Nav({ dark, setDark, onTermOpen }) {
                 className="mob-overlay-social-link"
                 aria-label="LinkedIn"
               >
-                <LinkedInIcon />
+                <LinkedInIcon size={22} />
               </a>
             </div>
           </nav>

@@ -18,7 +18,7 @@ export default function Projects() {
         <SectionH2 vis={vis}>Things I've built.</SectionH2>
         <div className="projects-grid">
           {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.id} p={p} i={i} vis={vis} />
+            <ProjectCard key={p.name} p={p} i={i} vis={vis} />
           ))}
         </div>
         <div className={`projects-more fu d4${vis ? " vis" : ""}`}>

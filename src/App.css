@@ -1,9 +1,9 @@
-/* ── DESIGN.md tokens mapped to glassmorphism dark aesthetic ── */
+/* ── Design tokens: glassmorphism dark / clean light ── */
 :root {
-    /* Surfaces (DESIGN.md dark tiles) */
-    --bg1: #252527; /* surface-tile-3 — hero, contact, footer */
-    --bg2: #272729; /* surface-tile-1 — about, skills */
-    --bg3: #2a2a2c; /* surface-tile-2 — projects */
+    /* Surfaces */
+    --bg1: #252527; /* hero, experience, contact, footer */
+    --bg2: #272729; /* about, skills */
+    --bg3: #2a2a2c; /* projects */
     /* Text (DESIGN.md on-dark scale) */
     --t1: #ffffff; /* on-dark */
     --t2: #cccccc; /* on-dark-muted */
@@ -24,7 +24,7 @@
 }
 
 html.lm {
-    /* Surfaces (DESIGN.md light tiles) */
+    /* Surfaces */
     --bg1: #f5f5f7; /* parchment */
     --bg2: #ffffff; /* canvas */
     --bg3: #eaecf0; /* cool gray — distinct from bg1 */
@@ -400,9 +400,6 @@ html.lm .fi:focus {
         transform: none;
     }
 }
-.h0 {
-    animation: hIn 0.8s var(--ease) 0.15s both;
-}
 .h1 {
     animation: hIn 0.9s var(--ease) 0.35s both;
 }
@@ -525,18 +522,6 @@ html.lm .fi:focus {
 .nl-resume::after {
     display: none;
 }
-.nl-ext-icon {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 3px;
-    opacity: 0.5;
-    position: relative;
-    top: -1px;
-}
-.nl:hover::after {
-    transform: scaleX(1);
-}
-
 /* ── Section badge ── */
 .sb {
     font-size: 0.75rem;
@@ -611,7 +596,7 @@ html.lm .fi:focus {
     color: var(--t1);
 }
 
-/* ── Light-mode hero dot grid ── */
+/* ── Hero background texture (dot grid in dark, crosshatch mesh in light) ── */
 .hero-dots {
     position: absolute;
     inset: 0;
@@ -625,9 +610,6 @@ html.lm .fi:focus {
     background-size: 28px 28px;
     opacity: 0;
     transition: opacity 0.35s;
-}
-html.lm .hero-dots {
-    opacity: 0.55;
 }
 html.lm .hero {
     background: radial-gradient(
@@ -765,10 +747,6 @@ html.lm .mob-overlay {
 }
 .mob-overlay-social-link:hover {
     color: var(--ac);
-}
-.mob-overlay-social-link svg {
-    transform: scale(1.5);
-    transform-origin: center;
 }
 @keyframes mobLinkIn {
     from {
@@ -982,6 +960,7 @@ html.lm .mob-overlay {
 }
 .contact-inner-wrap {
     max-width: 30rem;
+    margin: 0 auto;
 }
 .contact-sub {
     color: var(--t2);
@@ -989,6 +968,10 @@ html.lm .mob-overlay {
     line-height: 1.65;
     letter-spacing: -0.018em;
     margin-bottom: 2.25rem;
+}
+.contact-form-submit {
+    display: flex;
+    justify-content: center;
 }
 .contact-form {
     display: flex;
@@ -1041,6 +1024,11 @@ html.lm .mob-overlay {
 .social-link:hover {
     opacity: 0.6;
 }
+.contact-email-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 .copy-btn {
     padding: 2px 8px;
     border-radius: 6px;
@@ -1052,10 +1040,20 @@ html.lm .mob-overlay {
         border-color 0.2s;
     letter-spacing: -0.01em;
     border: 1px solid var(--bd);
+    color: var(--t3);
+}
+.copy-btn--copied {
+    color: #34d399;
+    border-color: rgba(52, 211, 153, 0.3);
+}
+.copy-btn--failed {
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
 }
 
 /* ── Experience / Timeline ── */
 .exp {
+    /* --exp-bg is used by .exp-node's box-shadow ring to match the section background */
     --exp-bg: var(--bg1);
     padding: 6rem 1.25rem 7.5rem;
     background: var(--exp-bg);
@@ -1152,13 +1150,6 @@ html.lm .exp-timeline::before {
     color: var(--t2);
     letter-spacing: -0.01em;
     line-height: 1.55;
-}
-.exp-note {
-    font-size: 0.875rem;
-    color: var(--t3);
-    letter-spacing: -0.01em;
-    line-height: 1.6;
-    font-style: italic;
 }
 .exp-chips {
     display: flex;
@@ -1399,11 +1390,6 @@ html.lm .exp-timeline::before {
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.2);
     letter-spacing: -0.01em;
-}
-
-/* minimised: body hidden, window shrinks to titlebar */
-.term-window--min {
-    max-height: none;
 }
 
 /* maximised: expand window */

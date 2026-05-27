@@ -92,6 +92,31 @@ export function useScrollProgress() {
   }, []);
 }
 
+// Shared scroll-based active-section tracker used by Nav and NavDots.
+// ids: ordered section IDs top→bottom. defaultId: active value before any section is passed.
+// ids and defaultId are mount-time constants; the eslint-disable is intentional.
+export function useActiveSection(ids, defaultId = "") {
+  const [active, setActive] = useState(defaultId);
+  useEffect(() => {
+    const fn = () => {
+      const scrollY = window.scrollY;
+      const atBottom = scrollY + window.innerHeight >= document.body.scrollHeight - 40;
+      if (atBottom) { setActive(ids[ids.length - 1]); return; }
+      const trigger = window.innerHeight * 0.35;
+      let current = defaultId;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop - trigger <= scrollY) current = id;
+      }
+      setActive(current);
+    };
+    window.addEventListener("scroll", fn, { passive: true });
+    fn();
+    return () => window.removeEventListener("scroll", fn);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return active;
+}
+
 export function useAmbientSound() {
   const ctxRef = useRef(null),
     gainRef = useRef(null);
@@ -105,6 +130,7 @@ export function useAmbientSound() {
         const buf = ctx.createBuffer(1, 2 * ctx.sampleRate, ctx.sampleRate);
         const d = buf.getChannelData(0);
         let last = 0;
+        // Brown-ish noise: leaky integrator over white noise, amplitude boosted, then lowpass filtered below
         for (let i = 0; i < d.length; i++) {
           const w = Math.random() * 2 - 1;
           d[i] = (last + 0.02 * w) / 1.02;
@@ -126,7 +152,9 @@ export function useAmbientSound() {
         gainRef.current = gn;
         gn.gain.setTargetAtTime(0.022, ctx.currentTime, 0.5);
         setOn(true);
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Ambient audio unavailable:", e);
+      }
     } else {
       const gn = gainRef.current,
         ctx = ctxRef.current;
