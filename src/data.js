@@ -54,13 +54,15 @@ export const SKILLS = [
     cat: "Languages",
     items: [
       "Python",
+      "C",
       "C++",
       "Java",
       "JavaScript",
       "TypeScript",
+      "HTML",
+      "CSS",
       "Dart",
       "Kotlin",
-      "SQL",
     ],
   },
   {
@@ -71,7 +73,6 @@ export const SKILLS = [
       "Node.js",
       "Flask",
       "Express",
-      "FastAPI",
       "Flutter",
       "PyTorch",
       "HuggingFace",
@@ -114,6 +115,7 @@ export const EXPERIENCE = [
     role: "Freelance Developer",
     location: "Remote",
     period: "Apr 2026 – Present",
+    description: "Building personal projects and open-source tools while actively seeking clients.",
   },
   {
     type: "education",
@@ -121,6 +123,7 @@ export const EXPERIENCE = [
     role: "B.S. Computer Science",
     location: "Irvine, CA",
     period: "Sept 2023 – June 2025",
+    gpa: "3.78",
   },
   {
     type: "work",
@@ -128,6 +131,7 @@ export const EXPERIENCE = [
     role: "Regulatory Affairs Associate",
     location: "Santa Fe Springs, CA",
     period: "Feb 2020 – Sept 2023",
+    highlights: ["100+ Complaints Resolved", "30+ Audits Directed", "70+ SOPs Authored & Maintained"],
   },
 ];
 

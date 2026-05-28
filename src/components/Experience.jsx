@@ -55,7 +55,18 @@ function ExpCard({ item, vis }) {
       <div className="exp-chips">
         <span className="tech-chip">{item.period}</span>
         <span className="tech-chip">{item.location}</span>
+        {item.gpa && <span className="tech-chip">GPA: {item.gpa}</span>}
       </div>
+      {item.highlights && (
+        <p style={{ fontSize: "0.78rem", color: "var(--t3)", marginTop: "0.6rem", lineHeight: 1.6 }}>
+          {item.highlights.join(" · ")}
+        </p>
+      )}
+      {item.description && (
+        <p style={{ fontSize: "0.78rem", color: "var(--t3)", marginTop: "0.6rem", lineHeight: 1.6 }}>
+          {item.description}
+        </p>
+      )}
     </article>
   );
 }

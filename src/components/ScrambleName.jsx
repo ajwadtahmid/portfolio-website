@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -12,6 +12,17 @@ export default function ScrambleName({ text }) {
           : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)],
       ),
   );
+  const [width, setWidth] = useState(null);
+  const spanRef = useRef(null);
+  const measureRef = useRef(null);
+
+  useEffect(() => {
+    if (measureRef.current) {
+      const w = measureRef.current.offsetWidth;
+      setWidth(w);
+    }
+  }, [text]);
+
   useEffect(() => {
     const ts = [],
       ivs = [];
@@ -52,5 +63,23 @@ export default function ScrambleName({ text }) {
       ivs.forEach(clearInterval);
     };
   }, [text]);
-  return <span aria-label={text}>{chars.join("")}</span>;
+
+  return (
+    <>
+      <span
+        ref={measureRef}
+        aria-hidden="true"
+        style={{ position: "absolute", visibility: "hidden" }}
+      >
+        {text}
+      </span>
+      <span
+        ref={spanRef}
+        aria-label={text}
+        style={width ? { display: "inline-block", width: `${width}px` } : {}}
+      >
+        {chars.join("")}
+      </span>
+    </>
+  );
 }
