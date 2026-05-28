@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { SKILLS, PROJECTS, CONTACT_EMAIL, STATS, EXPERIENCE } from "../data";
 
 const PROMPT = "visitor@ajwad:~$";
+
 
 const ALL_COMMANDS = [
   "help",
@@ -9,8 +11,11 @@ const ALL_COMMANDS = [
   "skills",
   "projects",
   "contact",
-  "ls",
-  "pwd",
+  "date",
+  "top",
+  "ping",
+  "rm",
+  "hack",
   "clear",
   "exit",
   "quit",
@@ -26,59 +31,106 @@ const ALL_COMMANDS = [
   "uci",
 ];
 
-const NEOFETCH = `\
+// ── Dynamic builders ──────────────────────────────────────────────────────────
+
+function buildNeofetch() {
+  const langs =
+    SKILLS.find((g) => g.cat === "Languages")
+      ?.items.slice(0, 5)
+      .join(" · ") ?? "";
+  const frames =
+    SKILLS.find((g) => g.cat === "Frameworks")
+      ?.items.slice(0, 4)
+      .join(" · ") ?? "";
+  const infra =
+    SKILLS.find((g) => g.cat === "Infrastructure")
+      ?.items.slice(0, 4)
+      .join(" · ") ?? "";
+  const commitStat = STATS.find((s) =>
+    s.label.toLowerCase().includes("commit"),
+  );
+  const commits = commitStat ? `${commitStat.end}${commitStat.suf}` : "1000+";
+  return `\
 ╭─────────────────────╮   visitor@ajwad
 │ ● ● ●               │   ─────────────────────────
 │ $ whoami            │   OS       Portfolio v1.0
 │ > Ajwad Tahmid Ayon │   Host     ajwadtahmid.com
 │ $  _                │   Kernel   React 19 + Vite 8
 ╰─────────────────────╯   Shell    bash
-                           Uptime   Since 2023
-                           ─────────────────────────
-                           Lang     Python · JS · C++ · Java · TS
-                           Frame    React · Node.js · Flutter · Flask
-                           Infra    AWS · Docker · Kubernetes · Linux
-                           ─────────────────────────
-                           Projects 6 shipped
-                           Commits  1000+`;
+                          Uptime   Since 2023
+                          ─────────────────────────
+                          Lang     ${langs}
+                          Frame    ${frames}
+                          Infra    ${infra}
+                          ─────────────────────────
+                          Projects ${PROJECTS.length} shipped
+                          Commits  ${commits}`;
+}
 
-const OUTPUTS = {
+function buildWhoami() {
+  const edu = EXPERIENCE.find((e) => e.type === "education");
+  const freelance = EXPERIENCE.find((e) => e.type === "freelance");
+  return `Ajwad Tahmid Ayon
+  ${edu ? `${edu.role} · ${edu.org.replace("University of California, Irvine", "UC Irvine")} (${edu.period.split("–")[1]?.trim()})` : ""}
+  ${freelance?.role ?? "Developer"} · Open to opportunities
+  Southern California · Open to relocation`;
+}
+
+function buildSkills() {
+  return SKILLS.map((g) => `${(g.cat + ":").padEnd(20)}${g.items.join(" · ")}`).join("\n");
+}
+
+function buildProjects() {
+  return PROJECTS.map((p, i) => {
+    const name = p.name.padEnd(18);
+    const desc = p.desc.length > 52 ? p.desc.slice(0, 52) + "…" : p.desc;
+    return `[${i}] ${name}${desc}`;
+  }).join("\n");
+}
+
+function buildContact() {
+  return [
+    `Email     ${CONTACT_EMAIL}`,
+    `GitHub    github.com/ajwadtahmid`,
+    `LinkedIn  linkedin.com/in/ajwad-tahmid-ayon`,
+  ].join("\n");
+}
+
+function buildDate() {
+  return new Date().toLocaleString();
+}
+
+function buildTop() {
+  return `PID    COMMAND              CPU   MEM
+42     react.exe            99%   1200M
+1337   caffeine.service     0.5%  50M
+9999   imposter_syndrome    99%   0M
+8888   node server.js       45%   500M`;
+}
+
+function buildHack() {
+  return `Initializing protocol...
+████████████████████ 100%
+Bypassing firewall...
+████████████████████ 100%
+Stealing source code...
+████████████████████ 100%
+Transferring data...
+████████████████████ 100%
+Mission accomplished. 🔓`;
+}
+
+// ── Static outputs (easter eggs, system commands) ─────────────────────────────
+
+const STATIC_OUTPUTS = {
   help: `Available commands:
   whoami      About Ajwad
   neofetch    System info
   skills      Technical skills
   projects    Projects built
   contact     Get in touch
-  ls          List sections
-  pwd         Current path
   clear       Clear terminal
   exit        Close terminal`,
-
-  neofetch: NEOFETCH,
-
-  whoami: `Ajwad Tahmid Ayon
-  CS Graduate · UC Irvine (2025)
-  Freelance Full-Stack Developer
-  Hawaiian Gardens, CA · Open to relocation`,
-
-  skills: `Languages   Python · C++ · Java · JavaScript · TypeScript · Kotlin · SQL
-  Frameworks  React · React Native · Node.js · Flask · Express · Flutter
-  Infra       AWS · Docker · Kubernetes · Linux · MySQL · Apache Tomcat
-  Tools       Git · GitHub Actions · Android Studio · CI/CD`,
-
-  projects: `[0] Fabflix          Full-stack movie app on AWS w/ Docker + Kubernetes
-  [1] Apex Companion   Flutter app (Android/iOS/Windows/Linux)
-  [2] SpydrNotes       Collaborative notes w/ real-time sync
-  [3] Search Engine    TF-IDF + PageRank + NLP pipeline in Python
-  [4] Sentiment AI     BERT fine-tuned to 93% accuracy
-  [5] VAE Recommender  11% NDCG over matrix factorization baseline`,
-
-  contact: `Email     contact@ajwadtahmid.com
-  GitHub    github.com/ajwadtahmid
-  LinkedIn  linkedin.com/in/ajwad-tahmid-ayon`,
-
-  ls: `about/  experience/  projects/  skills/  contact/`,
-  pwd: `/home/visitor/ajwadtahmid.com`,
   sudo: `sudo: you are not in the sudoers file. This incident will be reported.`,
   vim: `You're in vim now. Good luck getting out. (hint: try :q!)`,
   nano: `Opening nano... just kidding. Use the contact form instead.`,
@@ -89,7 +141,10 @@ const OUTPUTS = {
   matrix: `Wake up, visitor. The portfolio goes deeper than you think.`,
   "hire me": `Great choice. Run 'contact' for details.`,
   uci: `University of California, Irvine · B.S. Computer Science · Class of 2025 · Go Anteaters!`,
+  "rm -rf /": `rm: cannot remove '/': Permission denied`,
 };
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
 
 const CloseIcon = () => (
   <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
@@ -138,6 +193,8 @@ const MaximizeIcon = ({ maximized }) => (
   </svg>
 );
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Terminal({ onClose }) {
   const [history, setHistory] = useState([
     {
@@ -149,6 +206,7 @@ export default function Terminal({ onClose }) {
   const [cmdHistory, setCmdHistory] = useState([]);
   const [histIdx, setHistIdx] = useState(-1);
   const [maximized, setMaximized] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const inputRef = useRef(null);
   const bottomRef = useRef(null);
 
@@ -165,6 +223,7 @@ export default function Terminal({ onClose }) {
       if (!cmd) return;
       setCmdHistory((h) => [raw, ...h]);
       setHistIdx(-1);
+
       if (cmd === "clear") {
         setHistory([]);
         return;
@@ -173,9 +232,49 @@ export default function Terminal({ onClose }) {
         onClose();
         return;
       }
+
+      // Handle commands with arguments
+      if (cmd === "rm -rf /") {
+        const response = STATIC_OUTPUTS["rm -rf /"];
+        setHistory((h) => [
+          ...h,
+          { type: "input", text: raw },
+          { type: "output", text: response },
+        ]);
+        return;
+      }
+
+      if (cmd === "ping" || cmd.startsWith("ping ")) {
+        const target = cmd.split(" ")[1] || "localhost";
+        const response =
+          target === "ajwad" || target === "ajwadtahmid.com"
+            ? `PING ajwad.com (127.0.0.1): 64 bytes\n--- ajwad.com statistics ---\nrtt min/avg/max = 1/1/2 ms\nmood = building`
+            : `PING ${target}: Host unreachable`;
+        setHistory((h) => [
+          ...h,
+          { type: "input", text: raw },
+          { type: "output", text: response },
+        ]);
+        return;
+      }
+
+      // Dynamic outputs
+      const dynamic = {
+        neofetch: buildNeofetch(),
+        whoami: buildWhoami(),
+        skills: buildSkills(),
+        projects: buildProjects(),
+        contact: buildContact(),
+        date: buildDate(),
+        top: buildTop(),
+        hack: buildHack(),
+      };
+
       const response =
-        OUTPUTS[cmd] ??
+        dynamic[cmd] ??
+        STATIC_OUTPUTS[cmd] ??
         `command not found: ${cmd.split(" ")[0]}. Type 'help' for available commands.`;
+
       setHistory((h) => [
         ...h,
         { type: "input", text: raw },
@@ -234,11 +333,10 @@ export default function Terminal({ onClose }) {
             </button>
             <button
               className="term-btn term-btn--yellow"
-              onClick={onClose}
-              aria-label="Close"
+              onClick={() => setMinimized((m) => !m)}
+              aria-label={minimized ? "Restore" : "Minimize"}
             >
               {" "}
-              <CloseIcon />
             </button>
             <button
               className="term-btn term-btn--green"
@@ -253,30 +351,32 @@ export default function Terminal({ onClose }) {
           <span className="term-hint">esc to close</span>
         </div>
 
-        <div className="term-body" onClick={() => inputRef.current?.focus()}>
-          {history.map((line, i) => (
-            <div key={i} className={`tl tl--${line.type}`}>
-              {line.type === "input" && (
-                <span className="term-prompt">{PROMPT}&nbsp;</span>
-              )}
-              <span className="term-text">{line.text}</span>
+        {!minimized && (
+          <div className="term-body" onClick={() => inputRef.current?.focus()}>
+            {history.map((line, i) => (
+              <div key={i} className={`tl tl--${line.type}`}>
+                {line.type === "input" && (
+                  <span className="term-prompt">{PROMPT}&nbsp;</span>
+                )}
+                <span className="term-text">{line.text}</span>
+              </div>
+            ))}
+            <div className="tl tl--input">
+              <span className="term-prompt">{PROMPT}&nbsp;</span>
+              <input
+                ref={inputRef}
+                className="term-input"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={onKeyDown}
+                autoComplete="off"
+                spellCheck={false}
+                autoCapitalize="off"
+              />
             </div>
-          ))}
-          <div className="tl tl--input">
-            <span className="term-prompt">{PROMPT}&nbsp;</span>
-            <input
-              ref={inputRef}
-              className="term-input"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={onKeyDown}
-              autoComplete="off"
-              spellCheck={false}
-              autoCapitalize="off"
-            />
+            <div ref={bottomRef} />
           </div>
-          <div ref={bottomRef} />
-        </div>
+        )}
       </div>
     </div>
   );

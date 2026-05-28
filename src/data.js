@@ -137,6 +137,11 @@ export const EXPERIENCE = [
 
 export const CONTACT_EMAIL = "contact@ajwadtahmid.com";
 
+export const ABOUT_PILLS = [
+  { icon: "graduation", text: "B.S. Computer Science — UCI, 2025" },
+  { icon: "location", text: "Southern California · Open to Relocation" },
+];
+
 export const STATS = [
   { end: 1000, suf: "+", label: "GitHub Commits" },
   { end: 10, suf: "+", label: "Projects Shipped" },

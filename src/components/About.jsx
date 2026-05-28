@@ -1,14 +1,14 @@
 import { useInView } from "../hooks";
-import { STATS } from "../data";
+import { STATS, ABOUT_PILLS } from "../data";
 import { GraduationCapIcon, MapPinIcon } from "../icons";
 import SectionH2 from "./SectionH2";
 import StatCard from "./StatCard";
 import WaveDivider from "./WaveDivider";
 
-const ABOUT_PILLS = [
-  { Icon: GraduationCapIcon, text: "B.S. Computer Science — UCI, 2025" },
-  { Icon: MapPinIcon, text: "Southern California · Open to Relocation" },
-];
+const PILL_ICONS = {
+  graduation: GraduationCapIcon,
+  location: MapPinIcon,
+};
 
 export default function About() {
   const [ref, vis] = useInView();
@@ -40,12 +40,15 @@ export default function About() {
           </div>
         </div>
         <div className="about-pills">
-          {ABOUT_PILLS.map(({ Icon, text }, i) => (
-            <span key={i} className={`tp fu d${i + 2}${vis ? " vis" : ""}`}>
-              <Icon />
-              <span>{text}</span>
-            </span>
-          ))}
+          {ABOUT_PILLS.map(({ icon, text }, i) => {
+            const Icon = PILL_ICONS[icon];
+            return (
+              <span key={i} className={`tp fu d${i + 2}${vis ? " vis" : ""}`}>
+                {Icon && <Icon />}
+                <span>{text}</span>
+              </span>
+            );
+          })}
         </div>
       </div>
       <WaveDivider nextBg="var(--bg1)" />

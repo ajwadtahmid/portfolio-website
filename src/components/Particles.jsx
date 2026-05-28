@@ -80,7 +80,7 @@ export default function Particles() {
       raf = requestAnimationFrame(draw);
     };
     draw();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);

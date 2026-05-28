@@ -50,21 +50,15 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             ATA
           </a>
           <div className="nav-desktop">
-            {NAV_LINKS.map((link) => {
-              const ext = link.id === null;
-              const isActive = link.id !== null && active === link.id;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={`nl${isActive ? " nl-active" : ""}${ext ? " nl-resume" : ""}`}
-                  target={ext ? "_blank" : undefined}
-                  rel={ext ? "noopener noreferrer" : undefined}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`nl${active === link.id ? " nl-active" : ""}`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
           <div className="nav-actions">
             <button

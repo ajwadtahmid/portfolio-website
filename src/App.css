@@ -785,7 +785,7 @@ html.lm .mob-overlay {
     line-height: 1.04;
     color: var(--t1);
     margin-bottom: 1.25rem;
-    contain: layout;
+    font-variant-numeric: tabular-nums;
 }
 .hero-role-row {
     display: flex;
