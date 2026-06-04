@@ -10,11 +10,11 @@ import {
 } from "../icons";
 
 const NAV_LINKS = [
-  { label: "About",      href: "#about",      id: "about" },
+  { label: "About", href: "#about", id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Projects",   href: "#projects",   id: "projects" },
-  { label: "Skills",     href: "#skills",     id: "skills" },
-  { label: "Contact",    href: "#contact",    id: "contact" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Skills", href: "#skills", id: "skills" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 const NAV_IDS = NAV_LINKS.map((l) => l.id);
@@ -64,8 +64,8 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             <button
               className="icobtn"
               onClick={onTermOpen}
-              aria-label="Open terminal"
-              title="Terminal (`)"
+              aria-label="Open terminal (press backtick or click here)"
+              title="Terminal — Press ` or click"
             >
               <svg
                 width="13"

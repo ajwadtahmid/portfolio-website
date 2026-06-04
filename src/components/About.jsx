@@ -13,7 +13,7 @@ const PILL_ICONS = {
 export default function About() {
   const [ref, vis] = useInView();
   return (
-    <section id="about" ref={ref} className="about grain" aria-label="About">
+    <section id="about" ref={ref} className="about grain" aria-label="About me section with background, statistics, and education details">
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>About</span>
         <SectionH2 vis={vis}>

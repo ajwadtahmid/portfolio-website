@@ -547,8 +547,8 @@ html.lm .fi:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--card);
     border: 1px solid var(--bd);
@@ -561,6 +561,13 @@ html.lm .fi:focus {
 .icobtn:hover {
     color: var(--t1);
     border-color: var(--ac);
+}
+
+@media (pointer: fine) {
+    .icobtn {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 /* ── Stat card ── */

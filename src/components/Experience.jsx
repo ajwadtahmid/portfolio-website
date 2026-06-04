@@ -60,7 +60,7 @@ export default function Experience() {
       id="experience"
       ref={ref}
       className="exp grain"
-      aria-label="Experience"
+      aria-label="Experience section with work history, freelance projects, and education timeline"
     >
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>Experience</span>

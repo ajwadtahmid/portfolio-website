@@ -45,7 +45,7 @@ export default function Contact() {
       id="contact"
       ref={ref}
       className="contact grain"
-      aria-label="Contact"
+      aria-label="Contact section with contact form, email address, and social media links"
     >
       <div className="contact-inner-wrap">
         <span className={`sb${vis ? " vis" : ""}`}>Contact</span>

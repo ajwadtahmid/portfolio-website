@@ -99,10 +99,10 @@ export const SKILLS = [
 ];
 
 export const ROLES = [
-  "Software Engineer.",
-  "Full-Stack Developer.",
-  "Backend Architect.",
   "Product Engineer.",
+  "Full-Stack Developer.",
+  "Cloud Architect.",
+  "AI/ML Developer.",
 ];
 
 export const RESUME_URL =
@@ -115,7 +115,8 @@ export const EXPERIENCE = [
     role: "Freelance Developer",
     location: "Remote",
     period: "Apr 2026 – Present",
-    description: "Building personal projects and open-source tools while actively seeking clients.",
+    description:
+      "Building personal projects and open-source tools while actively seeking clients.",
   },
   {
     type: "education",
@@ -131,7 +132,11 @@ export const EXPERIENCE = [
     role: "Regulatory Affairs Associate",
     location: "Santa Fe Springs, CA",
     period: "Feb 2020 – Sept 2023",
-    highlights: ["100+ Complaints Resolved", "30+ Audits Directed", "70+ SOPs Authored & Maintained"],
+    highlights: [
+      "100+ Complaints Resolved",
+      "30+ Audits Directed",
+      "70+ SOPs Authored & Maintained",
+    ],
   },
 ];
 

@@ -11,7 +11,7 @@ export default function Projects() {
       id="projects"
       ref={ref}
       className="projects grain"
-      aria-label="Projects"
+      aria-label="Projects section featuring shipped applications with descriptions and links"
     >
       <div className="section-inner-lg">
         <span className={`sb${vis ? " vis" : ""}`}>Work</span>

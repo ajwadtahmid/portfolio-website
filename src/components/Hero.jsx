@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTypewriter, useScrollProgress } from "../hooks";
-import { ROLES, RESUME_URL } from "../data";
+import { ROLES, RESUME_URL, CONTACT_EMAIL } from "../data";
 import ScrambleName from "./ScrambleName";
 import Particles from "./Particles";
 import WaveDivider from "./WaveDivider";
@@ -8,9 +8,20 @@ import WaveDivider from "./WaveDivider";
 export default function Hero({ dark }) {
   useScrollProgress();
   const role = useTypewriter(ROLES);
+  const [emailCopied, setEmailCopied] = useState(false);
   const orb1Ref = useRef(null);
   const orb2Ref = useRef(null);
   const orb3Ref = useRef(null);
+
+  const handleEmailCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2200);
+    } catch (e) {
+      window.open(`mailto:${CONTACT_EMAIL}`);
+    }
+  };
 
   useEffect(() => {
     if (!dark) return;
@@ -25,7 +36,7 @@ export default function Hero({ dark }) {
   }, [dark]);
 
   return (
-    <section id="hero" className="hero grain" aria-label="Introduction">
+    <section id="hero" className="hero grain" aria-label="Hero section with name, role, and call to action buttons">
       <div className="hero-dots" aria-hidden="true" />
       {dark && (
         <>
@@ -54,11 +65,16 @@ export default function Hero({ dark }) {
         <p className="hero-tagline h3">Products, built with intention.</p>
 
         <div className="hero-cta h4">
-          <a href="#projects" className="btn btn-p">
+          <button
+            onClick={handleEmailCopy}
+            className={`btn btn-p${emailCopied ? " copy-btn--copied" : ""}`}
+            aria-label="Copy email address to clipboard"
+            title={`Copy ${CONTACT_EMAIL}`}
+          >
+            {emailCopied ? "✓ Copied" : "Email me"}
+          </button>
+          <a href="#projects" className="btn btn-o">
             View Projects
-          </a>
-          <a href="#contact" className="btn btn-o">
-            Contact Me
           </a>
           <a
             href={RESUME_URL}
