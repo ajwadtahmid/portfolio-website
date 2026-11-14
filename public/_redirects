@@ -1,0 +1,3 @@
+# /resume always serves the current Google Drive file (no redeploy needed after edits).
+# Update the file in Drive with "Manage versions" so the file ID, and this link, stay the same.
+/resume  https://drive.google.com/uc?export=download&id=1KMFSPUUP1jbwa9RSZxjZNKlxFUOfN_5X  302

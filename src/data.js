@@ -105,8 +105,9 @@ export const ROLES = [
   "AI/ML Developer.",
 ];
 
-export const RESUME_URL =
-  "https://drive.google.com/file/d/1KMFSPUUP1jbwa9RSZxjZNKlxFUOfN_5X/view?usp=drive_link";
+// Netlify redirects /resume to the Google Drive file (see public/_redirects), so
+// updating the file in Drive ("Manage versions") updates the site with no deploy.
+export const RESUME_URL = "/resume";
 
 export const EXPERIENCE = [
   {

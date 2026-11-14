@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useMotion } from "../motion";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -13,6 +14,7 @@ export default function ScrambleName({ text }) {
       ),
   );
   const [width, setWidth] = useState(null);
+  const motionOn = useMotion();
   const spanRef = useRef(null);
   const measureRef = useRef(null);
 
@@ -24,6 +26,7 @@ export default function ScrambleName({ text }) {
   }, [text]);
 
   useEffect(() => {
+    if (!motionOn) return;
     const ts = [],
       ivs = [];
     text.split("").forEach((ch, i) => {
@@ -62,7 +65,7 @@ export default function ScrambleName({ text }) {
       ts.forEach(clearTimeout);
       ivs.forEach(clearInterval);
     };
-  }, [text]);
+  }, [text, motionOn]);
 
   return (
     <>
@@ -78,7 +81,7 @@ export default function ScrambleName({ text }) {
         aria-label={text}
         style={width ? { display: "inline-block", width: `${width}px` } : {}}
       >
-        {chars.join("")}
+        {motionOn ? chars.join("") : text}
       </span>
     </>
   );

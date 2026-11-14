@@ -11,11 +11,13 @@ export default function Projects() {
       id="projects"
       ref={ref}
       className="projects grain"
-      aria-label="Projects section featuring shipped applications with descriptions and links"
+      aria-labelledby="projects-title"
     >
       <div className="section-inner-lg">
         <span className={`sb${vis ? " vis" : ""}`}>Work</span>
-        <SectionH2 vis={vis}>Things I've built.</SectionH2>
+        <SectionH2 id="projects-title" vis={vis}>
+          Things I've built.
+        </SectionH2>
         <div className="projects-grid">
           {PROJECTS.map((p, i) => (
             <ProjectCard key={p.name} p={p} i={i} vis={vis} />

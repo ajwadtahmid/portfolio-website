@@ -7,18 +7,22 @@
     /* Text (DESIGN.md on-dark scale) */
     --t1: #ffffff; /* on-dark */
     --t2: #cccccc; /* on-dark-muted */
-    --t3: #7a7a7a; /* ink-48 */
+    --t3: #a1a1a6; /* muted: 4.7:1+ on every dark surface incl. cards */
     --t4: rgba(255, 255, 255, 0.05);
     /* Borders / card surfaces */
     --bd: rgba(255, 255, 255, 0.07);
     --card: rgba(255, 255, 255, 0.05);
     /* Accent: primary-on-dark */
     --ac: #2997ff;
+    --ac-text: #5cb3ff; /* accent for small text on cards: 5.4:1+ */
+    --on-ac: #06121f; /* text on accent fills: 6.2:1 (white was 3.0:1) */
+    --err: #ff9b9b; /* error text: 6:1+ on dark surfaces */
     --shadow: rgba(41, 151, 255, 0.2);
     --nav: rgba(0, 0, 0, 0.86); /* surface-black blurred */
+    /* Inter (self-hosted via @fontsource-variable/inter, imported in index.jsx) */
     --font-sans:
-        SF Pro Display, system-ui, -apple-system, BlinkMacSystemFont,
-        "Helvetica Neue", Arial, sans-serif;
+        "Inter Variable", Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Arial, sans-serif;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --glow: rgba(41, 151, 255, 0.18);
 }
@@ -31,12 +35,15 @@ html.lm {
     /* Text */
     --t1: #1d1d1f; /* ink */
     --t2: #333333; /* ink-80 */
-    --t3: #7a7a7a; /* ink-48 */
+    --t3: #636368; /* muted: 5:1+ on every light surface */
     --t4: #e0e0e0; /* hairline */
     --bd: #e0e0e0;
     --card: #ffffff;
     /* Accent: primary */
     --ac: #0066cc;
+    --ac-text: #0066cc;
+    --on-ac: #ffffff; /* 5.6:1 on #0066cc */
+    --err: #b42318; /* error text: 5.6:1+ on light surfaces */
     --shadow: rgba(0, 102, 204, 0.14);
     --nav: rgba(245, 245, 247, 0.92);
     --glow: rgba(0, 102, 204, 0.12);
@@ -87,7 +94,9 @@ body {
     height: 2px;
     z-index: 1001;
     background: var(--ac);
-    width: 0%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
     pointer-events: none;
 }
 
@@ -214,7 +223,10 @@ body {
     font-size: 0.875rem;
     letter-spacing: -0.01em;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     cursor: pointer;
     position: relative;
 }
@@ -227,7 +239,7 @@ body {
 
 .btn-p {
     background: var(--ac);
-    color: #fff;
+    color: var(--on-ac);
     font-weight: 600;
     box-shadow: 0 0 24px var(--shadow);
     border: none;
@@ -528,7 +540,7 @@ html.lm .fi:focus {
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ac);
+    color: var(--ac-text);
     display: inline-block;
     margin-bottom: 14px;
     opacity: 0;
@@ -684,6 +696,9 @@ html.lm .hero-dots {
     color: var(--ac);
     text-decoration: none;
     justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
 }
 .nav-desktop {
     display: flex;
@@ -916,6 +931,7 @@ html.lm .mob-overlay {
     gap: 0.375rem;
     font-size: 0.875rem;
     width: fit-content;
+    min-height: 44px;
     margin-top: 0.25rem;
     color: var(--t3);
     letter-spacing: -0.01em;
@@ -929,6 +945,9 @@ html.lm .mob-overlay {
     text-align: center;
 }
 .projects-more-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-size: 0.875rem;
     color: var(--ac);
     letter-spacing: -0.01em;
@@ -1023,6 +1042,7 @@ html.lm .mob-overlay {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-height: 44px;
     color: var(--t2);
     font-size: 0.9rem;
     letter-spacing: -0.01em;
@@ -1038,7 +1058,9 @@ html.lm .mob-overlay {
     gap: 0.5rem;
 }
 .copy-btn {
-    padding: 2px 8px;
+    min-height: 32px;
+    min-width: 44px;
+    padding: 2px 10px;
     border-radius: 6px;
     background: var(--card);
     font-size: 0.7rem;
@@ -1245,23 +1267,37 @@ html.lm .exp-timeline::before {
     z-index: 100;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.25rem;
     align-items: center;
 }
+/* 24px click target (WCAG 2.5.8); the visible dot is the ::after below */
 .nd {
     display: block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+.nd::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 8px;
     height: 8px;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
     background: var(--bd);
     border: 1px solid var(--t3);
-    position: relative;
     transition:
         width 0.25s var(--ease),
         height 0.25s var(--ease),
         background 0.25s,
         border-color 0.25s,
         box-shadow 0.25s;
+}
+.nd:focus-visible::after {
+    outline: 2px solid var(--ac-text);
+    outline-offset: 3px;
 }
 .nd::before {
     content: attr(data-label);
@@ -1284,11 +1320,11 @@ html.lm .exp-timeline::before {
 .nd:hover::before {
     opacity: 1;
 }
-.nd:hover:not(.nd--active) {
+.nd:hover:not(.nd--active)::after {
     background: var(--t3);
     border-color: var(--t3);
 }
-.nd--active {
+.nd--active::after {
     width: 10px;
     height: 10px;
     background: var(--ac);
@@ -1362,6 +1398,7 @@ html.lm .exp-timeline::before {
     gap: 0.375rem;
 }
 .term-btn {
+    position: relative;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -1370,6 +1407,16 @@ html.lm .exp-timeline::before {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/* larger invisible hit area; the visible dot stays 12px */
+.term-btn::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+}
+.term-btn:focus-visible {
+    outline: 2px solid var(--ac-text);
+    outline-offset: 3px;
 }
 .term-btn--red {
     background: #ff5f57;
@@ -1495,4 +1542,86 @@ html.lm .exp-timeline::before {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ── Motion off ──
+   html[data-motion="off"] is set by the nav toggle, or by the OS "reduce motion"
+   setting when the visitor has not chosen (see index.html and src/motion.js).
+   Everything that moves on its own, or on scroll, is stilled; content that
+   starts hidden for a reveal is simply shown. Hover colour changes stay. */
+html[data-motion="off"] {
+    scroll-behavior: auto;
+}
+html[data-motion="off"] .orb,
+html[data-motion="off"] .cr,
+html[data-motion="off"] .pdot,
+html[data-motion="off"] .wave-track,
+html[data-motion="off"] .h1,
+html[data-motion="off"] .h2,
+html[data-motion="off"] .h3,
+html[data-motion="off"] .h4,
+html[data-motion="off"] .mob-overlay,
+html[data-motion="off"] .term-overlay,
+html[data-motion="off"] .term-window {
+    animation: none;
+}
+html[data-motion="off"] .mob-overlay-link,
+html[data-motion="off"] .mob-overlay-socials {
+    animation: none;
+    opacity: 1;
+}
+html[data-motion="off"] .fu,
+html[data-motion="off"] .sb,
+html[data-motion="off"] .wipe-inner {
+    transform: none;
+    transition-delay: 0s;
+}
+html[data-motion="off"] .fu,
+html[data-motion="off"] .sb {
+    transition: opacity 0.2s;
+}
+html[data-motion="off"] .btn:hover,
+html[data-motion="off"] .btn:active {
+    transform: none;
+}
+
+/* ── Skip link: first tab stop, visible only when focused ── */
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2000;
+    padding: 0.625rem 1rem;
+    border-radius: 9999px;
+    background: var(--ac);
+    color: var(--on-ac);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-200%);
+}
+.skip-link:focus {
+    transform: none;
+}
+#main:focus {
+    outline: none;
+}
+
+/* ── Contact form feedback ── */
+.field-error {
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    color: var(--err);
+}
+.fi[aria-invalid="true"] {
+    border-color: var(--err);
+}
+.contact-status {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    color: var(--err);
+}
+.contact-status a {
+    color: inherit;
+    text-decoration: underline;
 }

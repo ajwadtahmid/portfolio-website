@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { SKILLS, PROJECTS, CONTACT_EMAIL, STATS, EXPERIENCE } from "../data";
+import { useMotion } from "../motion";
 
 const PROMPT = "visitor@ajwad:~$";
 
@@ -209,13 +210,36 @@ export default function Terminal({ onClose }) {
   const [minimized, setMinimized] = useState(false);
   const inputRef = useRef(null);
   const bottomRef = useRef(null);
+  const dialogRef = useRef(null);
+  const motionOn = useMotion();
 
+  // Move focus into the dialog on open and hand it back to the opener on close.
   useEffect(() => {
+    const opener = document.activeElement;
     inputRef.current?.focus();
+    return () => opener?.focus?.();
   }, []);
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
+    bottomRef.current?.scrollIntoView({
+      behavior: motionOn ? "smooth" : "auto",
+    });
+  }, [history, motionOn]);
+
+  // Keep Tab inside the dialog (the input's own Tab handler runs first for autocomplete).
+  const trapFocus = (e) => {
+    if (e.key !== "Tab" || e.defaultPrevented) return;
+    const items = [...dialogRef.current.querySelectorAll("button, input")];
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
 
   const runCommand = useCallback(
     (raw) => {
@@ -318,8 +342,13 @@ export default function Terminal({ onClose }) {
   return (
     <div className="term-overlay" onClick={onClose}>
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Terminal"
         className={`term-window${maximized ? " term-window--max" : ""}`}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={trapFocus}
       >
         <div className="term-titlebar">
           <div className="term-traffic">
@@ -353,19 +382,22 @@ export default function Terminal({ onClose }) {
 
         {!minimized && (
           <div className="term-body" onClick={() => inputRef.current?.focus()}>
-            {history.map((line, i) => (
-              <div key={i} className={`tl tl--${line.type}`}>
-                {line.type === "input" && (
-                  <span className="term-prompt">{PROMPT}&nbsp;</span>
-                )}
-                <span className="term-text">{line.text}</span>
-              </div>
-            ))}
+            <div role="log" aria-label="Terminal output">
+              {history.map((line, i) => (
+                <div key={i} className={`tl tl--${line.type}`}>
+                  {line.type === "input" && (
+                    <span className="term-prompt">{PROMPT}&nbsp;</span>
+                  )}
+                  <span className="term-text">{line.text}</span>
+                </div>
+              ))}
+            </div>
             <div className="tl tl--input">
               <span className="term-prompt">{PROMPT}&nbsp;</span>
               <input
                 ref={inputRef}
                 className="term-input"
+                aria-label="Terminal command"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}

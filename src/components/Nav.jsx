@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useAmbientSound, useActiveSection } from "../hooks";
+import { useMotion, setMotion } from "../motion";
 import {
   SunIcon,
   MoonIcon,
@@ -25,6 +26,43 @@ export default function Nav({ dark, setDark, onTermOpen }) {
   const closeMenu = useCallback(() => setOpen(false), []);
   const active = useActiveSection(NAV_IDS);
   const [soundOn, toggleSound] = useAmbientSound();
+  const motionOn = useMotion();
+  const menuBtnRef = useRef(null);
+  const overlayRef = useRef(null);
+
+  // Mobile menu: focus the first link, close on Escape, keep Tab inside the
+  // menu (plus its toggle button), and return focus to the toggle on close.
+  useEffect(() => {
+    if (!open) return;
+    const btn = menuBtnRef.current;
+    overlayRef.current?.querySelector("a[href]")?.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = [btn, ...overlayRef.current.querySelectorAll("a[href]")];
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (!items.includes(active)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      btn?.focus();
+    };
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -92,14 +130,40 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             </button>
             <button
               className="icobtn"
+              onClick={() => setMotion(!motionOn)}
+              aria-label="Animations"
+              aria-pressed={motionOn}
+              title={motionOn ? "Animations on (click to turn off)" : "Animations off (click to turn on)"}
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                {motionOn ? (
+                  <>
+                    <rect x="6" y="5" width="4" height="14" rx="1" />
+                    <rect x="14" y="5" width="4" height="14" rx="1" />
+                  </>
+                ) : (
+                  <polygon points="7 4 20 12 7 20" />
+                )}
+              </svg>
+            </button>
+            <button
+              className="icobtn"
               onClick={() => setDark(!dark)}
               aria-label={dark ? "Light mode" : "Dark mode"}
             >
               {dark ? <SunIcon /> : <MoonIcon />}
             </button>
             <button
+              ref={menuBtnRef}
               className="icobtn nav-mob-btn"
               onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
               aria-label={open ? "Close menu" : "Open menu"}
             >
               <svg
@@ -127,7 +191,12 @@ export default function Nav({ dark, setDark, onTermOpen }) {
         </div>
       </nav>
       {open && (
-        <div className="mob-overlay" aria-modal="true" role="dialog">
+        <div
+          ref={overlayRef}
+          className="mob-overlay"
+          role="dialog"
+          aria-label="Site menu"
+        >
           <nav className="mob-overlay-inner" aria-label="Mobile navigation">
             {NAV_LINKS.map((link, i) => (
               <a

@@ -80,8 +80,19 @@ export default function Particles() {
       raf = requestAnimationFrame(draw);
     };
     draw();
+    // Pause the loop while the hero is scrolled out of view
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!raf) raf = requestAnimationFrame(draw);
+      } else {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    });
+    io.observe(canvas);
     window.addEventListener("resize", resize, { passive: true });
     return () => {
+      io.disconnect();
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);

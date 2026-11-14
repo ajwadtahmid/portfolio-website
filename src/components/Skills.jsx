@@ -69,10 +69,12 @@ const SKILL_ICONS = {
 export default function Skills() {
   const [ref, vis] = useInView();
   return (
-    <section id="skills" ref={ref} className="skills grain" aria-label="Skills section with technologies and tools organized by category">
+    <section id="skills" ref={ref} className="skills grain" aria-labelledby="skills-title">
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>Toolkit</span>
-        <SectionH2 vis={vis}>What I work with.</SectionH2>
+        <SectionH2 id="skills-title" vis={vis}>
+          What I work with.
+        </SectionH2>
         <div className="skills-grid">
           {SKILLS.map((g, i) => (
             <div key={g.cat} className={`fu d${i + 1}${vis ? " vis" : ""}`}>

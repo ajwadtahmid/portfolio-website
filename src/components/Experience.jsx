@@ -60,11 +60,13 @@ export default function Experience() {
       id="experience"
       ref={ref}
       className="exp grain"
-      aria-label="Experience section with work history, freelance projects, and education timeline"
+      aria-labelledby="experience-title"
     >
       <div className="section-inner">
         <span className={`sb${vis ? " vis" : ""}`}>Experience</span>
-        <SectionH2 vis={vis}>Where I've been.</SectionH2>
+        <SectionH2 id="experience-title" vis={vis}>
+          Where I've been.
+        </SectionH2>
         <div className="exp-timeline">
           {EXPERIENCE.map((item, i) => {
             const side = i % 2 === 0 ? "left" : "right";
