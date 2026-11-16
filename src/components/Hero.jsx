@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import { useTypewriter, useScrollProgress } from "../hooks";
 import { useMotion } from "../motion";
 import { ROLES, RESUME_URL, CONTACT_EMAIL } from "../data";
@@ -11,20 +11,9 @@ export default function Hero({ dark }) {
   useScrollProgress();
   const role = useTypewriter(ROLES);
   const motionOn = useMotion();
-  const [emailCopied, setEmailCopied] = useState(false);
   const orb1Ref = useRef(null);
   const orb2Ref = useRef(null);
   const orb3Ref = useRef(null);
-
-  const handleEmailCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(CONTACT_EMAIL);
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2200);
-    } catch {
-      window.open(`mailto:${CONTACT_EMAIL}`);
-    }
-  };
 
   useEffect(() => {
     const orbs = [orb1Ref, orb2Ref, orb3Ref];
@@ -89,14 +78,9 @@ export default function Hero({ dark }) {
         <p className="hero-tagline h3">Products, built with intention.</p>
 
         <div className="hero-cta h4">
-          <button
-            onClick={handleEmailCopy}
-            className={`btn btn-p${emailCopied ? " copy-btn--copied" : ""}`}
-            aria-label="Copy email address to clipboard"
-            title={`Copy ${CONTACT_EMAIL}`}
-          >
-            {emailCopied ? "✓ Copied" : "Email me"}
-          </button>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="btn btn-p">
+            Email me
+          </a>
           <a href="#projects" className="btn btn-o">
             View Projects
           </a>

@@ -79,7 +79,12 @@ export default function ScrambleName({ text }) {
       <span
         ref={spanRef}
         aria-label={text}
-        style={width ? { display: "inline-block", width: `${width}px` } : {}}
+        // maxWidth lets the name wrap, and stay centred, when it is wider than the screen
+        style={
+          width
+            ? { display: "inline-block", width: `${width}px`, maxWidth: "100%" }
+            : {}
+        }
       >
         {motionOn ? chars.join("") : text}
       </span>

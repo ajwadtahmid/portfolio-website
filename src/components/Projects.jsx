@@ -34,7 +34,7 @@ export default function Projects() {
           </a>
         </div>
       </div>
-      <WaveDivider nextBg="var(--bg2)" />
+      <WaveDivider nextBg="var(--bg1)" />
     </section>
   );
 }

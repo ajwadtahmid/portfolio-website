@@ -33,7 +33,7 @@ Technically rigorous, unfussy, understated. Shows work over hype. Calm and focus
 2. **Signal competence quietly.** Technical detail in project cards (stack, outcome, domain knowledge) builds credibility better than adjectives.
 3. **Friction-free discovery.** Clear navigation, fast load, no surprises. Tools and terminals are familiar; use that vocabulary.
 4. **One aesthetic, applied consistently.** Dark and light themes, subtle interactive motion, no divergent brand moods per section. The visual direction (currently Apple-inspired) is being re-chosen from mockups; the outcome is recorded in DESIGN.md.
-5. **Show, don't tell.** The terminal, the dark/light toggle, the ambient audio, the custom hooks—these demonstrate taste and depth. Don't describe them in copy.
+5. **Show, don't tell.** The terminal, the dark/light toggle, the custom hooks—these demonstrate taste and depth. Don't describe them in copy.
 
 ## Accessibility & Inclusion
 

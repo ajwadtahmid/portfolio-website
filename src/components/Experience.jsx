@@ -1,57 +1,13 @@
-import { useInView, useCardTilt } from "../hooks";
+import { useInView } from "../hooks";
 import { EXPERIENCE } from "../data";
 import SectionH2 from "./SectionH2";
 import WaveDivider from "./WaveDivider";
-import { FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa";
 
-const TYPE_ICONS = {
-  education: FaGraduationCap,
-  work: FaBriefcase,
-  freelance: FaCode,
-};
 const TYPE_LABELS = {
   education: "Education",
   work: "Work",
   freelance: "Freelance",
 };
-
-function ExpCard({ item, vis }) {
-  const { ref, onMove, onLeave } = useCardTilt();
-  return (
-    <article
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className="glass gb exp-card"
-    >
-      <div>
-        <span
-          className={`sb${vis ? " vis" : ""}`}
-          style={{ fontSize: "0.73rem", marginBottom: 6 }}
-        >
-          {TYPE_LABELS[item.type]}
-        </span>
-        <p className="exp-org">{item.org}</p>
-        <p className="exp-role">{item.role}</p>
-      </div>
-      <div className="exp-chips">
-        <span className="tech-chip">{item.period}</span>
-        <span className="tech-chip">{item.location}</span>
-        {item.gpa && <span className="tech-chip">GPA: {item.gpa}</span>}
-      </div>
-      {item.highlights && (
-        <p style={{ fontSize: "0.78rem", color: "var(--t3)", marginTop: "0.6rem", lineHeight: 1.6 }}>
-          {item.highlights.join(" · ")}
-        </p>
-      )}
-      {item.description && (
-        <p style={{ fontSize: "0.78rem", color: "var(--t3)", marginTop: "0.6rem", lineHeight: 1.6 }}>
-          {item.description}
-        </p>
-      )}
-    </article>
-  );
-}
 
 export default function Experience() {
   const [ref, vis] = useInView();
@@ -67,25 +23,31 @@ export default function Experience() {
         <SectionH2 id="experience-title" vis={vis}>
           Where I've been.
         </SectionH2>
-        <div className="exp-timeline">
+        <ol className="exp-list">
           {EXPERIENCE.map((item, i) => {
-            const side = i % 2 === 0 ? "left" : "right";
-            const Icon = TYPE_ICONS[item.type];
+            const facts = [item.role, item.location];
+            if (item.gpa) facts.push(`GPA ${item.gpa}`);
+            const note = item.highlights?.join(" · ") ?? item.description;
             return (
-              <div
-                key={i}
-                className={`exp-item exp-item--${side} fu d${Math.min(i + 1, 4)}${vis ? " vis" : ""}`}
+              <li
+                key={item.org}
+                className={`exp-row fu d${Math.min(i + 1, 4)}${vis ? " vis" : ""}`}
               >
-                <div className="exp-node" aria-hidden="true">
-                  <Icon size={20} />
+                <div className="exp-when">
+                  <span className="exp-type">{TYPE_LABELS[item.type]}</span>
+                  <span className="exp-period">{item.period}</span>
                 </div>
-                <ExpCard item={item} vis={vis} />
-              </div>
+                <div className="exp-what">
+                  <h3 className="exp-org">{item.org}</h3>
+                  <p className="exp-role">{facts.join(" · ")}</p>
+                  {note && <p className="exp-note">{note}</p>}
+                </div>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
-      <WaveDivider nextBg="var(--bg3)" />
+      <WaveDivider nextBg="var(--bg2)" />
     </section>
   );
 }

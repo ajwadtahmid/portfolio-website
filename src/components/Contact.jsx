@@ -67,14 +67,13 @@ export default function Contact() {
     }
   };
 
-  const fieldProps = (key, label) => ({
+  const fieldProps = (key) => ({
     id: FIELD_IDS[key],
     name: key === "msg" ? "message" : key,
     value: form[key],
     onChange: setField(key),
     "aria-invalid": errors[key] ? "true" : undefined,
     "aria-describedby": errors[key] ? `${FIELD_IDS[key]}-err` : undefined,
-    "aria-label": label,
   });
 
   return (
@@ -123,15 +122,14 @@ export default function Contact() {
               </label>
             </div>
             <div>
-              <label className="sr" htmlFor="fn">
+              <label className="fl" htmlFor="fn">
                 Name
               </label>
               <input
-                {...fieldProps("name", "Name")}
+                {...fieldProps("name")}
                 required
                 type="text"
                 autoComplete="name"
-                placeholder="Your name"
                 className="fi"
               />
               {errors.name && (
@@ -141,15 +139,15 @@ export default function Contact() {
               )}
             </div>
             <div>
-              <label className="sr" htmlFor="fe">
+              <label className="fl" htmlFor="fe">
                 Email
               </label>
               <input
-                {...fieldProps("email", "Email")}
+                {...fieldProps("email")}
                 required
                 type="email"
                 autoComplete="email"
-                placeholder="Email address"
+                placeholder="you@company.com"
                 className="fi"
               />
               {errors.email && (
@@ -159,11 +157,11 @@ export default function Contact() {
               )}
             </div>
             <div>
-              <label className="sr" htmlFor="fm">
+              <label className="fl" htmlFor="fm">
                 Message
               </label>
               <textarea
-                {...fieldProps("msg", "Message")}
+                {...fieldProps("msg")}
                 required
                 rows={5}
                 placeholder="What's on your mind?"

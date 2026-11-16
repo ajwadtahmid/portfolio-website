@@ -71,8 +71,8 @@ function App() {
       <main id="main" tabIndex={-1}>
         <Hero dark={dark} />
         <About />
-        <Experience />
         <Projects />
+        <Experience />
         <Skills />
         <Contact />
       </main>

@@ -1,19 +1,18 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useAmbientSound, useActiveSection } from "../hooks";
+import { useActiveSection } from "../hooks";
+import { RESUME_URL } from "../data";
 import { useMotion, setMotion } from "../motion";
 import {
   SunIcon,
   MoonIcon,
-  SpeakerOnIcon,
-  SpeakerOffIcon,
   GithubIcon,
   LinkedInIcon,
 } from "../icons";
 
 const NAV_LINKS = [
   { label: "About", href: "#about", id: "about" },
-  { label: "Experience", href: "#experience", id: "experience" },
   { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Experience", href: "#experience", id: "experience" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
@@ -25,7 +24,6 @@ export default function Nav({ dark, setDark, onTermOpen }) {
   const [open, setOpen] = useState(false);
   const closeMenu = useCallback(() => setOpen(false), []);
   const active = useActiveSection(NAV_IDS);
-  const [soundOn, toggleSound] = useAmbientSound();
   const motionOn = useMotion();
   const menuBtnRef = useRef(null);
   const overlayRef = useRef(null);
@@ -99,6 +97,9 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             ))}
           </div>
           <div className="nav-actions">
+            <a href={RESUME_URL} className="nl nl-resume">
+              Resume
+            </a>
             <button
               className="icobtn"
               onClick={onTermOpen}
@@ -119,14 +120,6 @@ export default function Nav({ dark, setDark, onTermOpen }) {
                 <polyline points="4 17 10 11 4 5" />
                 <line x1="12" y1="19" x2="20" y2="19" />
               </svg>
-            </button>
-            <button
-              className="icobtn"
-              onClick={toggleSound}
-              title={soundOn ? "Mute ambient" : "Ambient sound"}
-              aria-label={soundOn ? "Mute ambient sound" : "Play ambient sound"}
-            >
-              {soundOn ? <SpeakerOnIcon /> : <SpeakerOffIcon />}
             </button>
             <button
               className="icobtn"
@@ -209,9 +202,17 @@ export default function Nav({ dark, setDark, onTermOpen }) {
                 {link.label}
               </a>
             ))}
+            <a
+              href={RESUME_URL}
+              className="mob-overlay-link"
+              style={{ animationDelay: `${NAV_LINKS.length * 0.06}s` }}
+              onClick={closeMenu}
+            >
+              Resume
+            </a>
             <div
               className="mob-overlay-socials"
-              style={{ animationDelay: `${NAV_LINKS.length * 0.06}s` }}
+              style={{ animationDelay: `${(NAV_LINKS.length + 1) * 0.06}s` }}
             >
               <a
                 href="https://github.com/ajwadtahmid"

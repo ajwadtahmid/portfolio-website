@@ -176,7 +176,7 @@ The system serves visitors who spend two to five minutes scanning projects and w
 A near-neutral palette with a single blue. Dark surfaces are almost indistinguishable steps of charcoal; light surfaces are warm-cool paper whites.
 
 ### Primary
-- **Signal Blue** (`#2997ff`): the accent on dark. Used for the primary button fill, links, the logo mark, stat numbers, focus and active states, timeline nodes. On cards it is too dim for small text (4.05:1), so use Signal Blue Text there.
+- **Signal Blue** (`#2997ff`): the accent on dark. Used for the primary button fill, links, the logo mark, stat numbers, focus and active states. On cards it is too dim for small text (4.05:1), so use Signal Blue Text there.
 - **Signal Blue Text** (`#5cb3ff`): the accent for small text on dark cards (section kickers, tags). 5.4:1 or better on every dark surface.
 - **Deep Link Blue** (`#0066cc`): the accent on light surfaces, 5.1:1 on paper. White text on it is 5.6:1.
 - **Ink on Blue** (`#06121f`): the text colour on Signal Blue fills. White on `#2997ff` is only 3.0:1 and must not be used.
@@ -231,7 +231,7 @@ A near-neutral palette with a single blue. Dark surfaces are almost indistinguis
 
 ## Layout
 
-A single centred column of full-width tonal sections, each padded 6rem above and 7.5rem below with 1.25rem side gutters. Content sits in two measures: 56rem (about, narrow reading and forms) and 64rem (projects, experience, footer). The project grid is three columns with 1.25rem gaps, dropping to two columns at 1024px and one at 640px. The experience section is a two-sided vertical timeline that collapses to a single column on small screens. The primary navigation is a fixed 48px bar; below 768px it becomes a full-screen menu overlay. Breakpoints in use: 1024, 900 (section dots hide), 768 (mobile nav), 640 (single column). Spacing rhythm is generous between sections and tight inside cards (1.5rem padding, 1rem gaps).
+A single centred column of full-width tonal sections, each padded 6rem above and 7.5rem below with 1.25rem side gutters. Content sits in two measures: 56rem (about, narrow reading and forms) and 64rem (projects, experience, footer). The project grid is three columns with 1.25rem gaps, dropping to two columns at 1024px and one at 640px. The experience section is a ruled list, one row per entry with dates in a left column, that stacks to a single column on small screens. The primary navigation is a fixed 48px bar; below 768px it becomes a full-screen menu overlay. Breakpoints in use: 1024, 900 (section dots hide), 768 (mobile nav), 640 (single column). Spacing rhythm is generous between sections and tight inside cards (1.5rem padding, 1rem gaps).
 
 ## Elevation & Depth
 
@@ -273,7 +273,7 @@ Soft and consistent. Interactive controls are full pills (9999px): buttons, chip
 - **Error:** the border turns to the Error colour and a message appears beneath the field, linked with `aria-describedby`.
 
 ### Navigation
-- **Style:** a fixed 48px bar that gains a translucent blurred background once scrolled. Logo mark "ATA" in Signal Blue at the left, text links centred, icon buttons (terminal, animations, sound, theme) at the right.
+- **Style:** a fixed 48px bar that gains a translucent blurred background once scrolled. Logo mark "ATA" in Signal Blue at the left, text links centred, a filled Resume button and three icon buttons (terminal, animations, theme) at the right.
 - **States:** the active section's link is marked as you scroll (underline shortens to a short bar); hover draws an underline.
 - **Mobile:** below 768px, a full-screen overlay menu with staggered links; focus is trapped and Escape closes it.
 - **Section dots:** a vertical dot rail on the right (hidden below 900px), each dot a 24px target with a label on hover.
@@ -282,7 +282,7 @@ Soft and consistent. Interactive controls are full pills (9999px): buttons, chip
 An optional macOS-style terminal window opened with the backtick key or the nav button. Always dark, regardless of theme, in a monospace face, with a prompt `visitor@ajwad:~$`, tab completion, history, and playful commands. It is a labelled dialog with a focus trap and returns focus on close.
 
 ### Motion
-Easing is `cubic-bezier(0.16, 1, 0.3, 1)` (a strong ease-out). Reveals use 0.7s fade-and-rise with 0.1s staggers; the hero enters once on load over 0.9s; hover and state changes take 0.2 to 0.35s. Ambient layers (blurred glow orbs, a connected-dot particle canvas, wave dividers, a blinking cursor, an ambient-sound toggle) exist only in the hero and dividers. All of it stills when the Animations switch is off or the OS asks for reduced motion.
+Easing is `cubic-bezier(0.16, 1, 0.3, 1)` (a strong ease-out). Reveals use 0.7s fade-and-rise with 0.1s staggers; the hero enters once on load over 0.9s; hover and state changes take 0.2 to 0.35s. Ambient layers (blurred glow orbs, a connected-dot particle canvas, wave dividers, a blinking cursor) exist only in the hero and dividers. All of it stills when the Animations switch is off or the OS asks for reduced motion.
 
 ## Do's and Don'ts
 

@@ -51,7 +51,7 @@ export default function About() {
           })}
         </div>
       </div>
-      <WaveDivider nextBg="var(--bg1)" />
+      <WaveDivider nextBg="var(--bg3)" />
     </section>
   );
 }
