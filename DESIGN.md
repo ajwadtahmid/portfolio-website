@@ -301,3 +301,7 @@ Easing is `cubic-bezier(0.16, 1, 0.3, 1)` (a strong ease-out). Reveals use 0.7s 
 - **Don't** use parallax or movement on body text, or any animation that cannot be turned off.
 - **Don't** replace tonal section changes with hard rules or coloured bands.
 - **Don't** make the terminal required to reach any content.
+
+## Desktop view
+
+The optional desktop view at `/desktop/` (source in `src/desktop/`) is a separate page with its own look: petrol and paper colours with a tangerine accent, set in Red Hat Display, Red Hat Text and Red Hat Mono. It is linked from the nav's monitor button and links back with "Standard site". Its rules live in `src/desktop/styles.css`; nothing above applies to it, and none of its fonts or colours belong on the main site.
