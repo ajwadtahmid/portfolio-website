@@ -100,6 +100,28 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             <a href={RESUME_URL} className="nl nl-resume">
               Resume
             </a>
+            <a
+              className="icobtn nav-pc"
+              href="/desktop/"
+              aria-label="Desktop view"
+              title="Desktop view: the portfolio as a desktop with apps and games"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </a>
             <button
               className="icobtn"
               onClick={onTermOpen}
@@ -210,9 +232,16 @@ export default function Nav({ dark, setDark, onTermOpen }) {
             >
               Resume
             </a>
+            <a
+              href="/desktop/"
+              className="mob-overlay-link"
+              style={{ animationDelay: `${(NAV_LINKS.length + 1) * 0.06}s` }}
+            >
+              Desktop view
+            </a>
             <div
               className="mob-overlay-socials"
-              style={{ animationDelay: `${(NAV_LINKS.length + 1) * 0.06}s` }}
+              style={{ animationDelay: `${(NAV_LINKS.length + 2) * 0.06}s` }}
             >
               <a
                 href="https://github.com/ajwadtahmid"

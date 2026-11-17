@@ -1492,6 +1492,10 @@ html.lm .mob-overlay {
     .nav-mob-btn {
         display: flex;
     }
+    /* the phone bar is full: Desktop view moves into the menu */
+    .nav-pc {
+        display: none;
+    }
     .skills-grid {
         grid-template-columns: 1fr;
     }
