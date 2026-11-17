@@ -1464,29 +1464,9 @@ html.lm .mob-overlay {
     justify-content: space-between;
     gap: 0.75rem 2rem;
 }
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.5rem;
-}
-.footer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 44px;
-    color: var(--t2);
-    font-size: 0.875rem;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-.footer-link:hover {
-    color: var(--t1);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
 .footer-text {
     flex-basis: 100%;
+    text-align: center;
     color: var(--t3);
     font-size: 0.75rem;
     letter-spacing: -0.01em;
